@@ -9,9 +9,10 @@ let totalAmount = 0
 // ---------------------------------------------------------------------------
 
 for (let index = 1; index <= productQuantity; index++) {
+
     let productOrder = parseFloat(prompt("Ingrese el valor del primer producto " + index))
     while ((productOrder <= 0) || (!productOrder)) {
-        productOrder = parseInt(prompt("El valor debe ser mayor a 0 y numerico"))
+        productOrder = parseFloat(prompt("El valor debe ser mayor a 0 y numerico"))
     }
     totalAmount = totalAmount + productOrder
 }
@@ -20,10 +21,10 @@ alert("El total de su pedido es: \nTotal de arituclos registrados: " + productQu
 // ---------------------------------------------------------------------------
 
 
-let payment = parseInt(prompt("Ingrese el total a abonar para poder calcular su vuelto:"))
+let payment = parseFloat(prompt("Ingrese el total a abonar para poder calcular su vuelto:"))
 
 while ((payment < 0 || payment != payment)) {
-    payment = parseInt(prompt("Debe ingresar al menos un valor y debe ser mayor o igual a 0"))
+    payment = parseFloat(prompt("Debe ingresar al menos un valor y debe ser mayor o igual a 0"))
 
 }
 const paymentDif = totalAmount - payment
