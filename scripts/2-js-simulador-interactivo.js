@@ -43,7 +43,7 @@ function calculations(amount1, amount2, opeation) {
     }
 }
 
-// FUNCTION AUTO WHIL
+// FUNCTION AUTO WHILE
 function whileAutomation(var1, var2, var3, var4) {
     while ((var1 <= 0) || (!var1)) {
         var1 = parseInt(messageGenerator(var2, var3, var4))
@@ -51,7 +51,7 @@ function whileAutomation(var1, var2, var3, var4) {
     return var1
 }
 
-// PRINT DETAIL
+//  FUNCTION PRINT DETAIL
 function printBilling() {
     console.log("Total productos: $" + productQuantity + " - " + "Total a a pagar: $" + totalAmount)
     console.log('----------------------------------------')
