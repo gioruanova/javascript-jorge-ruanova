@@ -1,3 +1,6 @@
+
+
+
 let productQuantity = parseInt(prompt("Ingrese cantidad de productos a registrar:"))
 
 while ((productQuantity <= 0) || (!productQuantity)) {
