@@ -53,9 +53,9 @@ function whileAutomation(var1, var2, var3, var4) {
 
 //  FUNCTION PRINT DETAIL
 function printBilling() {
-    console.log("Total productos: $" + productQuantity + " - " + "Total a a pagar: $" + totalAmount)
+    console.log("Total productos: " + productQuantity + " - " + "Total a a pagar: $" + totalAmount.toLocaleString('en-US'))
     console.log('----------------------------------------')
-    console.log("Total del pago: $" + payment + " - " + dato + " $" + Math.abs(totalAmount - payment))
+    console.log("Total del pago: $" + payment.toLocaleString('en-US') + " - " + dato + " $" + Math.abs(totalAmount - payment).toLocaleString('en-US'))
 
 }
 
@@ -73,7 +73,7 @@ for (let index = 1; index <= productQuantity; index++) {
     productOrder = whileAutomation(productOrder, errorInputValueMessage, "", "onlyMessage")
     totalAmount = calculations(totalAmount, productOrder, "+")
 }
-alert("El total de su pedido es: \nTotal de arituclos registrados: " + productQuantity + "\nTotal a abonar: $" + totalAmount)
+alert("El total de su pedido es: \nTotal de arituclos registrados: " + productQuantity + "\nTotal a abonar: $" + totalAmount.toLocaleString('en-US'))
 
 
 // PAYMENT---------------------------------------------------------------------------
@@ -85,7 +85,7 @@ const paymentDif = calculations(totalAmount, payment, "-")
 
 let dato = ""
 if (!payment) {
-    alert('Usted no ha abonado. Adeuda el total: $' + totalAmount)
+    alert('Usted no ha abonado. Adeuda el total: $' + totalAmount.toLocaleString('en-US'))
     dato = 'Saldo deudor de'
 }
 else if (paymentDif == 0) {
@@ -93,11 +93,11 @@ else if (paymentDif == 0) {
     dato = 'Su cuenta esta en'
 
 } else if (paymentDif < 0) {
-    alert("Usted tiene un saldo acreedor de $" + Math.abs(paymentDif) + ". \nGracias.")
+    alert("Usted tiene un saldo acreedor de $" + Math.abs(paymentDif).toLocaleString('en-US') + ". \nGracias.")
     dato = 'Saldo acreedor de'
 
 } else {
-    alert("Lamentablemente el monto no ha sido cubierto. \nUsted todavia debe abonar un total de $" + paymentDif + ". \nGracias.")
+    alert("Lamentablemente el monto no ha sido cubierto. \nUsted todavia debe abonar un total de $" + paymentDif.toLocaleString('en-US') + ". \nGracias.")
     dato = 'Saldo pendiente de'
 }
 
