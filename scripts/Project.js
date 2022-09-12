@@ -16,7 +16,7 @@ const disclaimer = '===APP DISCLAIMER===\nDado que todavia no hemos visto DOM, u
 
 // GLOBAL=======================================================================================
 let productSelected = 0
-let availableProducts = ""
+
 let productsOut = ""
 let contactForStock = false
 let contactForStockProd = ""
@@ -53,7 +53,7 @@ function showProducts() {
         }
         return value
     }
-
+    let availableProducts = ""
     stock = stockConversion2()
     catalogoDisponible.forEach((a, key) => {
         availableProducts += key + 1 + ". " + a.nombre + " - $" + a.precio.toLocaleString('en-US') + stockConversion2(a.cant) + stockConversion(a.stock) + "\n"
