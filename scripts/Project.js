@@ -21,7 +21,7 @@ let productsOut = ""
 let contactForStock = false
 let contactForStockProd = ""
 const outOfStockArray = []
-const customerCarrito = []
+let customerCarrito = []
 let carritoFinal = []
 
 // PRODUCT AVAILABILITY=======================================================================================
@@ -115,7 +115,7 @@ function readyToFinish() {
     if ((customerResponse) === "si") {
         productToSelect()
     } else {
-        finishPurchase()
+        deteleItemQuestion()
     }
 }
 
@@ -134,10 +134,34 @@ function finishPurchase() {
         } else {
 
             alert('Su compra ha sido cancelada. Gracias vuelva pronto!')
+            console.log('Compra cancelada. Vuelva pronto')
             endingPurchase()
         }
     }
 }
+
+//TO DELETE STAGE===================================================================================
+function deteleItemQuestion() {
+    customerResponseDelete = prompt('Antes de continuar, desea elimiar algun producto de su carrito?').toLowerCase()
+
+    if (customerResponseDelete === "si") {
+        deleteItem()
+    } else {
+        finishPurchase()
+    }
+
+}
+
+function deleteItem() {
+    let valueToDelete = prompt('Ingrese el nombre del producto a eliminar del carrito').toLowerCase()
+    customerCarrito = customerCarrito.filter(function (obj) {
+        return obj.nombre.toLowerCase() !== valueToDelete.toLowerCase();
+    });
+    alert(`Su producto ${valueToDelete} ha sido eliminado`)
+    readyToFinish()
+}
+
+
 
 // OUT OF STOCK QUESTION=======================================================================================CHECKING
 function endingPurchase() {
@@ -224,6 +248,13 @@ function main() {
 }
 // CALLING FUNCTIONS=======================================================================================
 main()
+
+
+
+
+
+
+
 
 
 
