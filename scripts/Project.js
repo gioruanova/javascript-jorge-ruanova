@@ -109,7 +109,7 @@ function startingSite() {
 
 // MESSAGE CONTINUE =======================================================================================CHECK
 function readyToFinish() {
-    let customerResponse = (prompt('Desea continuar comprando?\nSi\nNo')).toLocaleLowerCase()
+    let customerResponse = (prompt('Desea continuar comprando?\nSi\nNo')).toLowerCase()
     if ((customerResponse) === "si") {
         productToSelect()
     } else {
@@ -122,7 +122,7 @@ function finishPurchase() {
     if (customerCarrito[0] === undefined) {
         endingPurchase()
     } else {
-        let customerResponse = (prompt('Desea confirmar la compra?\n(despues de este punto ya no habra vuelta atras)\nSi\nNo')).toLocaleLowerCase()
+        let customerResponse = (prompt('Desea confirmar la compra?\n(despues de este punto ya no habra vuelta atras)\nSi\nNo')).toLowerCase()
         if ((customerResponse) === "si") {
             alert('Su compra ha sido realizada. A continuacion encontrara en consola, un detalle de todos sus productos')
             totalPurchase()
@@ -222,4 +222,6 @@ function main() {
 }
 // CALLING FUNCTIONS=======================================================================================
 main()
+
+
 
