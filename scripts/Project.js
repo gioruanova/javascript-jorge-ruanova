@@ -32,7 +32,9 @@ let catalogoDisponible = [
     { nombre: "Iphone", precio: 5000, cant: 20, stock: true },
     { nombre: "Samsung", precio: 5000, cant: 20, stock: true },
     { nombre: "Iphone 17", precio: 5000, cant: 0, stock: false },
-    { nombre: "Iphone 18", precio: 5000, cant: 0, stock: false }
+    { nombre: "Camara seguridad", precio: 5000, cant: 0, stock: false },
+    { nombre: "Monitor Curvo", precio: 5000, cant: 0, stock: false },
+    { nombre: "Teclado Gamer", precio: 5000, cant: 0, stock: false }
 ]
 // PRODUCT SHOW=======================================================================================
 function showProducts() {
