@@ -27,7 +27,7 @@ let carritoFinal = []
 // PRODUCT AVAILABILITY=======================================================================================
 let catalogoDisponible = [
     { nombre: "PC", precio: 1000, cant: 10, stock: true },
-    { nombre: "laptop", precio: 5000, cant: 20, stock: true },
+    { nombre: "Laptop", precio: 5000, cant: 20, stock: true },
     { nombre: "Gabinete", precio: 5000, cant: 20, stock: true },
     { nombre: "Iphone", precio: 5000, cant: 20, stock: true },
     { nombre: "Samsung", precio: 5000, cant: 20, stock: true },
@@ -142,7 +142,7 @@ function finishPurchase() {
 
 //TO DELETE STAGE===================================================================================
 function deteleItemQuestion() {
-    customerResponseDelete = prompt('Antes de continuar, desea elimiar algun producto de su carrito?').toLowerCase()
+    customerResponseDelete = prompt('Antes de continuar, desea eliminar algun producto de su carrito?').toLowerCase()
 
     if (customerResponseDelete === "si") {
         deleteItem()
@@ -248,13 +248,5 @@ function main() {
 }
 // CALLING FUNCTIONS=======================================================================================
 main()
-
-
-
-
-
-
-
-
 
 
