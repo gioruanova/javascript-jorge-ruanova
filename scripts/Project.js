@@ -1,4 +1,5 @@
 
+
 // STANDARD MESSAGES=======================================================================================
 // MESSAGES: PRODUCTS QUANTITY---
 const productQuantityText = 'Cuantos productos desea comprar?:'
@@ -26,15 +27,15 @@ let carritoFinal = []
 
 // PRODUCT AVAILABILITY=======================================================================================
 let catalogoDisponible = [
-    { nombre: "PC", precio: 1000, cant: 10, stock: true },
-    { nombre: "Laptop", precio: 5000, cant: 20, stock: true },
-    { nombre: "Gabinete", precio: 5000, cant: 20, stock: true },
-    { nombre: "Iphone", precio: 5000, cant: 20, stock: true },
-    { nombre: "Samsung", precio: 5000, cant: 20, stock: true },
-    { nombre: "Iphone 17", precio: 5000, cant: 0, stock: false },
-    { nombre: "Camara seguridad", precio: 5000, cant: 0, stock: false },
-    { nombre: "Monitor Curvo", precio: 5000, cant: 0, stock: false },
-    { nombre: "Teclado Gamer", precio: 5000, cant: 0, stock: false }
+    { key: 1, nombre: "PC Gamer", precio: 1000, cant: 10, stock: true, image: { src: "../imgs/pc.jpg" } },
+    { key: 2, nombre: "Laptop", precio: 5000, cant: 20, stock: true, image: { src: "../imgs/laptop.jpg" } },
+    { key: 3, nombre: "Gabinete", precio: 5000, cant: 20, stock: true, image: { src: "../imgs/gabinete.jpg" } },
+    { key: 4, nombre: "Iphone X", precio: 5000, cant: 20, stock: true, image: { src: "../imgs/iphonex.JPG" } },
+    { key: 5, nombre: "Samsung X", precio: 5000, cant: 20, stock: true, image: { src: "../imgs/samsung.jpg" } },
+    { key: 6, nombre: "Iphone 14", precio: 5000, cant: 0, stock: false, image: { src: "../imgs/iphone14.jpeg" } },
+    { key: 7, nombre: "Camara seguridad", precio: 5000, cant: 4, stock: false, image: { src: "../imgs/camara.jpg" } },
+    { key: 8, nombre: "Monitor Curvo", precio: 5000, cant: 10, stock: true, image: { src: "../imgs/monitor.jpg" } },
+    { key: 9, nombre: "Teclado Gamer", precio: 5000, cant: 5, stock: true, image: { src: "../imgs/teclado.jpg" } }
 ]
 // PRODUCT SHOW=======================================================================================
 function showProducts() {
@@ -104,10 +105,15 @@ function whileAutomationAvailability(var1, var2, var3, var4) {
 
 
 // MESSAGE WELCOME=======================================================================================CHECK
-function startingSite() {
-    alert(messageGenerator(initialSalute, "initial"))
-    alert(messageGenerator(disclaimer, "initial"))
-}
+
+
+
+let welcome1 = document.getElementById("welcome1");
+welcome1.innerText = initialSalute;
+
+let welcome2 = document.getElementById("welcome2");
+welcome2.innerText = disclaimer;
+
 
 // MESSAGE CONTINUE =======================================================================================CHECK
 function readyToFinish() {
@@ -122,6 +128,7 @@ function readyToFinish() {
 // MESSAGE CONFIRM =======================================================================================CHECK
 function finishPurchase() {
     if (customerCarrito[0] === undefined) {
+
         endingPurchase()
     } else {
         let customerResponse = (prompt('Desea confirmar la compra?\n(despues de este punto ya no habra vuelta atras)\nSi\nNo')).toLowerCase()
@@ -134,8 +141,10 @@ function finishPurchase() {
         } else {
 
             alert('Su compra ha sido cancelada. Gracias vuelva pronto!')
+
             console.log('Compra cancelada. Vuelva pronto')
             endingPurchase()
+            emptyCart()
         }
     }
 }
@@ -158,6 +167,7 @@ function deleteItem() {
         return obj.nombre.toLowerCase() !== valueToDelete.toLowerCase();
     });
     alert(`Su producto ${valueToDelete} ha sido eliminado`)
+    partialCantShow()
     readyToFinish()
 }
 
@@ -175,10 +185,16 @@ function endingPurchase() {
             alert(`Gracias! No olvide volver pronto para enterarse de mas novedades.`)
         } else {
             alert(`Su correo ${newsLetter} ha sido registrado y recibira novedaeds ante nuevos ingresos. Gracias!`)
-            console.log(`Dado de alta en base para recibir novedades y promociones en ${newsLetter}`)
+            let newsletterMessage = document.getElementById("message");
+            newsletterMessage.innerText = "Dado de alta en base para recibir novedades y promociones en :";
+
+            let newsletterEmail = document.getElementById("message-email");
+            newsletterEmail.innerText = newsLetter;
         }
     }
 }
+
+
 
 // OUT OF STOCK ARRAY =======================================================================================CHECK
 function pushOutOfStockArray() {
@@ -198,6 +214,7 @@ function productToSelect() {
         productSelected = whileAutomationAvailability(productSelected, errorInputMessage, "onlyMessage")
     }
     addToCart()
+    partialCantShow()
     readyToFinish()
     return (productSelected, contactForStock, contactForStockProd)
 }
@@ -218,9 +235,11 @@ function addToCart() {
     } else {
         customerCarrito.push({ nombre: name, precio: price, cantidad: quantity, total: total })
     }
+
 }
 // TOTAL CART =======================================================================================CHECK
 function totalPurchase() {
+
     let totalAmount = customerCarrito.reduce(
         (acumulador, producto) => acumulador + producto.total, 0
     )
@@ -231,22 +250,97 @@ function totalPurchase() {
 }
 //CART DETAIL=========================================================
 function cartDetail() {
+    let carritoFinal = []
     customerCarrito.forEach((a) => {
         carritoFinal += a.nombre + " - $" + ((a.total).toLocaleString('en-US')) + " - (x" + a.cantidad + ")\n"
     })
     console.log(carritoFinal)
 }
 
+//CART DETAIL CANT=========================================================
+function partialCantShow() {
+    let partialAmount = customerCarrito.reduce(
+        (acumulador, producto) => acumulador + producto.total, 0
+    )
+
+    let partialCant = customerCarrito.reduce(
+        (acumulador, producto) => acumulador + producto.cantidad, 0
+    )
 
 
+    let partialAmountTToShow = document.getElementsByClassName("detail-amount");
+    let partialCantToShow = document.getElementsByClassName("detail-cant");
 
+
+    for (const amount of partialAmountTToShow) {
+        amount.innerText = `${partialAmount.toLocaleString('en-US')}`;
+    }
+
+    for (const cant of partialCantToShow) {
+        cant.innerText = partialCant;
+    }
+
+
+}
+
+//EMPTY START=========================================================
+function emptyCart() {
+    let final = customerCarrito.length
+    customerCarrito.splice(0, final)
+}
+
+//PRINT PRODUCTS=========================================================
+const contenedorProductos = document.getElementById("contenedor-productos");
+function stockConversion(value) {
+    if (!value) {
+        value = "Sin Stock!"
+    } else {
+        value = ""
+    }
+    return value
+}
+
+function stockConversion2(value) {
+    if (value == 0) {
+        value = " "
+    } else {
+        value = ` Stock disponible: ${value}`
+    }
+    return value
+}
+
+for (const producto of catalogoDisponible) {
+    let column = document.createElement("div");
+    column.className = "col-md-4 mt-3 ";
+    column.id = `columna-${producto.key}`;
+    column.innerHTML = `
+      <div class="card">
+          <div class="card-body">
+          <div class="image-container">
+          <img src="${producto.image.src}"class="product-image"/>
+          </div>
+          <div class="product-description">
+          <p class="card-text">Nombre: <b>${producto.nombre}</b></p>
+          <p class="card-text">Precio compra: <b>${producto.precio.toLocaleString('en-US')}</b></p>
+          <p class="card-text"><b>${stockConversion2(producto.cant)}</b></p>
+          <p class="card-text"><b>${stockConversion(producto.stock)}</b></p>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar al carrito</button>
+          </div>
+          </div>
+      </div>`;
+
+    contenedorProductos.append(column);
+}
 
 // MAIN FUNCTIONS=======================================================================================
 function main() {
-    startingSite()
+    emptyCart()
     productToSelect()
+
 }
 // CALLING FUNCTIONS=======================================================================================
-main()
+
+
+
 
 
