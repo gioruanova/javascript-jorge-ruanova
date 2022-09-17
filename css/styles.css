@@ -16,6 +16,11 @@ nav {
   padding: 0;
   z-index: 99999;
 }
+@media (min-width: 768px) {
+  .navbar {
+    box-shadow: -4px 5px 10px #535e68;
+  }
+}
 
 .container-fluid {
   margin: 1rem;
@@ -79,12 +84,18 @@ nav {
   padding: 2px 10px 2px 10px;
   width: 100%;
   margin: 0;
+  box-shadow: -4px 5px 10px #535e68;
+}
+.cart p {
+  margin: 0;
+  margin-right: 1rem;
 }
 @media (min-width: 1000px) {
   .cart {
-    width: 20rem;
+    width: 25rem;
     margin: 0 1rem;
     justify-content: center;
+    border-radius: 5px;
   }
 }
 .cart .bi {
@@ -159,6 +170,15 @@ nav {
 .footer-container {
   padding: 0 5rem;
 }
+.footer-container a {
+  color: white;
+}
+.footer-container a:hover {
+  color: #8c9fc4;
+}
+.footer-container .btn:hover {
+  color: black;
+}
 .footer-container .footer-section {
   padding: 1rem 0;
   border-bottom: 1px solid white;
@@ -167,7 +187,7 @@ nav {
 .container-compra-detail p {
   margin-left: 10px;
 }
-.container-compra-detail .detail:nth-last-child(2) p:nth-child(2):before {
+.container-compra-detail .detail:first-child p:nth-child(2):before {
   content: "$";
 }
 .container-compra-detail .detail {
@@ -229,6 +249,15 @@ nav {
 }
 .row .card-body p:last-child {
   color: rgb(230, 170, 170);
+}
+
+.button-to-clear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-to-clear #btn-empty-car {
+  display: none;
 }
 
 /*# sourceMappingURL=styles.css.map */
