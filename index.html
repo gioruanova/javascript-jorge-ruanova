@@ -16,7 +16,9 @@
 </head>
 
 <body>
-
+  <div class="promotion-bar">
+    <p class="flipX"><span>Tiempo limitado</span>: Envios gratis en compras superiores a $5000</p>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><i class="bi bi-lightning-charge"></i>Fast Tech</a>
@@ -35,29 +37,53 @@
       </div>
     </div>
     <div class="cart">
-      <p>Ver carrito</p>
-      <i class="bi bi-cart"></i>
-      <div class="cart-detail">
-        <p class="cart-category">Total:</p>
-        <p class="cart-value detail-cant">0</p>
-      </div>
+      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#carritoDetail">
+        Ver carrito
+        <i class="bi bi-cart"></i>
+      </button>
       <div class="cart-detail">
         <p class="cart-category">Productos:</p>
-        <p class="cart-value detail-amount">$0,00</p>
+        <p class="cart-value detail-cant" id="cart-value detail-cant">0</p>
+      </div>
+      <div class="cart-detail">
+        <p class="cart-category">Total:</p>
+        <p class="cart-value detail-amount" id="cart-value detail-amount">$0,00</p>
       </div>
     </div>
   </nav>
   <div id="ToTop"></div>
-  <section class="mainSection">
-    <h1>Fast Tech</h1>
-    <div class="main-content">
-      <h2>Bienvenidos!</h2>
-      <p class="welcome-message" id="welcome1"></p>
-      <p class="welcome-message" id="welcome2"></p>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+        <div class="main-banner">
+          <h1>Fast Tech</h1>
+          <h2>+Tech, +Speed</h2>
+        </div>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./imgs/carousel/img1.jpg" class="d-block w-100" alt="gallery-1">
+      </div>
+      <div class="carousel-item">
+        <img src="./imgs/carousel/img2.jpg" class="d-block w-100" alt="gallery-2">
+      </div>
+      <div class="carousel-item">
+        <img src="./imgs/carousel/img3.jpg" class="d-block w-100" alt="gallery-3">
+      </div>
     </div>
 
+
+  </div>
+  <section class="mainSection">
+
+
     <div class="container product-details" id="Products">
-      <h2>Productos</h2>
 
       <!-- --------productos aca-------- -->
       <div id="contenedor-productos" class="row">
@@ -66,14 +92,14 @@
       </div>
       <!-- --------productos aca-------- -->
       <div class="buttons-container">
-        <button type="button" class="btn btn-primary" onclick="main()">Compra Asistida</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalError">Compra
-          Libre</button>
+
+
       </div>
     </div>
-
+    <!-- 
     <div class="container buy-detail">
       <h2>Detalle de su compra:</h2>
+
 
       <div class="container-compra-detail">
         <div class="detail">
@@ -95,7 +121,9 @@
         <p id="message"></p>
         <p id="message-email"></p>
       </div>
-    </div>
+    </div> -->
+
+
 
   </section>
 
@@ -130,7 +158,7 @@
 
   </footer>
 
-  <!-- MODAL====================================================== -->
+  <!-- MODAL1====================================================== -->
 
   <div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -139,8 +167,8 @@
           <h5 class="modal-title" id="modalErrorLabel"><i class="bi bi-lightning-charge"></i> Fast Tech</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          Proximamente las cards tendran interactividad para hacer el famoso "add to cart".
+        <div class="modal-body-nostock">
+          Producto temporalmente fuera de stock.
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -150,23 +178,53 @@
     </div>
   </div>
 
+  <!-- MODAL2====================================================== -->
+  <div class="modal fade" id="carritoDetail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="carritoDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="carritoDetailLabel"><i class="bi bi-lightning-charge"></i> Su carrito</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="current-carrito-title"><i class="bi bi-cart"></i> Este es el detalle de su carrito</div>
+          <div class="carritoProducts" id="carritoProducts">
 
+            <div class="message-empty">Su carrito se encuentra vacio</div>
+            <!-- ----ARRAY PRODS---- -->
 
+            <!-- ----ARRAY PRODS---- -->
 
+          </div>
+          <div id="subtotal-container">
+            <div class="subtotal" id="subtotaltodelete">
 
-
-
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Seguir comprando</button>
+          <button type="button" class="btn btn-success" onclick="endingPurchase()">Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
   <!-- MODAL====================================================== -->
+
+
+
+
+  
   <script src="./scripts/Project.js"></script>
 
   <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-    crossorigin="anonymous"></script>
-    
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 
 
 </body>
