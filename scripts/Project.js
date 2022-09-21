@@ -192,11 +192,23 @@ function subTotalPrints() {
     const subTotal = document.getElementById("subtotaltodelete");
     subTotal.innerHTML = ""
     subTotal.innerHTML = `      
-    <p>Su total es de: </p>
-    <p>$${finalAmount.toLocaleString('en-US')}</p>`
+   <div class="subtotal-line"> <p>Su total es de: </p>
+   <p>$${finalAmount.toLocaleString('en-US')}</p></div>
+    <div class="cart-options-wrapper">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll()>Vaciar Carrito</button>
+    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Seguir comprando</button>
+    <button type="button" class="btn btn-success" onclick="endingPurchase()">Finalizar compra</button>
+</div>
+    `
+
+    const emptyButton = document.getElementById('empty-buttons')
+    emptyButton.innerHTML = ""
+
     const amount = document.getElementById('cart-value detail-amount')
     amount.innerHTML = ""
     amount.innerHTML = `$${finalAmount.toLocaleString('en-US')}`
+
+
 
     const quantityTotal = document.getElementById('cart-value detail-cant')
     quantityTotal.innerHTML = ""
@@ -260,17 +272,38 @@ function endingPurchase() {
     customerCarrito.forEach((a) => {
         availableProducts += `<div>\n  ${a.nombre} $${a.precio.toLocaleString('en-US')} - (x ${a.cantidad})\n - Total: <b>$${(a.precio * a.cantidad).toLocaleString('en-US')}</b></div>`
     })
-    const endingPurchase = document.getElementById("carritoProducts");
 
+
+    const endingPurchaseSubtotal = document.getElementById("subtotaltodelete");
+    endingPurchaseSubtotal.innerHTML = ""
+
+    const endingPurchase = document.getElementById("carritoProducts");
     endingPurchase.innerHTML = ""
+
     endingPurchase.innerHTML = `      
     <p>Su compra ha sido realizada.\n A continuacion podra ver el detalle de la misma:</p>
     <div class="sub-total-final">${availableProducts}</div>
 
     <div class="saludo-final">Gracias por su compra!</div>
+
+    <div class="subtotal-line"> <p>Su total es de: </p>
+    <p>$${finalAmount.toLocaleString('en-US')}</p></div>
+     <div class="cart-options-wrapper padding-wrapper">
+     <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll()>Finalizar</button>
+     </div>
+
     `
 
 }
 
 
+
+function emptyAll() {
+    customerCarrito = []
+    totalCartAmount()
+    totalCartCant()
+    printCartPreview()
+    subTotalPrints()
+    
+}
 

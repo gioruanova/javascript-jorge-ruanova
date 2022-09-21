@@ -560,6 +560,34 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+}
+
+.subtotal-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.padding-wrapper {
+  padding-top: 1rem;
+}
+
+.cart-options-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+.cart-options-wrapper button {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .cart-options-wrapper {
+    flex-direction: row;
+  }
 }
 
 .sub-total-final {
