@@ -578,7 +578,7 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 1rem;
+  padding: 1rem;
   gap: 1rem;
 }
 .cart-options-wrapper button {
@@ -617,7 +617,19 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 0;
 }
 @media (min-width: 768px) {
-  .main-banner .main-banner {
+  .main-banner {
+    margin-left: 5rem;
+  }
+  .main-banner h1 {
+    font-size: 5rem;
+    line-height: 4rem;
+  }
+  .main-banner h2 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1024px) {
+  .main-banner {
     margin-left: 10rem;
   }
   .main-banner h1 {

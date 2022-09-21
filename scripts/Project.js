@@ -34,6 +34,7 @@ let catalogoDisponible = [
 
 
 
+
 //PRINT PRODUCTS AVAILABLE=========================================================
 const contenedorProductos = document.getElementById("contenedor-productos");
 function stockConversion(value) {
@@ -223,6 +224,7 @@ function productToUpdate() {
     let productSelectedCart = parseInt(event.srcElement.id)
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
+
 
     objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
     customerCarrito[objIndex].cantidad = parseInt(cantSelected)
