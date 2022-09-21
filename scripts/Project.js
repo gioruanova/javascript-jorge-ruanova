@@ -109,12 +109,16 @@ function addToCart() {
     let productSelected = parseInt(event.srcElement.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
 
+    let productToAdd = catalogoDisponible.filter(
+        (elemento) => elemento.id === productSelected
+    );
+
+
     if (cantSelected == 0) {
         alert('Debe seleccionar un nro para agregar al carrito')
+
     } else {
-        let productToAdd = catalogoDisponible.filter(
-            (elemento) => elemento.id === productSelected
-        );
+
         customerCarrito.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
         alert('Producto agrgado al carrito')
@@ -124,11 +128,6 @@ function addToCart() {
 
         printCartPreview()
         subTotalPrints()
-
-
-
-
-
     }
 }
 
@@ -187,6 +186,8 @@ function totalCartCant() {
 
 
 
+
+
 // PRINT SUBTOTAL----------------------------------------------------------------------------
 function subTotalPrints() {
     const subTotal = document.getElementById("subtotaltodelete");
@@ -222,13 +223,9 @@ function productToUpdate() {
     let productSelectedCart = parseInt(event.srcElement.id)
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
+
     objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
     customerCarrito[objIndex].cantidad = parseInt(cantSelected)
-
-    console.log(cantSelected)
-    console.log(cantSelectedCart)
-
-
 
     totalCartAmount()
     totalCartCant()
@@ -273,7 +270,6 @@ function endingPurchase() {
         availableProducts += `<div>\n  ${a.nombre} $${a.precio.toLocaleString('en-US')} - (x ${a.cantidad})\n - Total: <b>$${(a.precio * a.cantidad).toLocaleString('en-US')}</b></div>`
     })
 
-
     const endingPurchaseSubtotal = document.getElementById("subtotaltodelete");
     endingPurchaseSubtotal.innerHTML = ""
 
@@ -297,13 +293,12 @@ function endingPurchase() {
 }
 
 
-
 function emptyAll() {
     customerCarrito = []
     totalCartAmount()
     totalCartCant()
     printCartPreview()
     subTotalPrints()
-    
+    console.log('Storage to be process (current cart and ')
 }
 
