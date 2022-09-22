@@ -50,6 +50,14 @@ nav {
   }
 }
 
+.carousel .slide {
+  height: 80vh;
+  .carousel-inner {
+    height: 80vh;
+    
+  }
+}
+
 .name-page {
   color: white;
   margin-left: 2rem;
@@ -565,8 +573,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 100%;
 }
 
-
-.padding-wrapper{
+.padding-wrapper {
   padding-top: 1rem;
 }
 
@@ -576,7 +583,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 100%;
   padding: 1rem;
   gap: 1rem;
-  button{
+  button {
     width: 100%;
   }
   @media (min-width: 768px) {
@@ -585,7 +592,6 @@ input[type="number"]::-webkit-inner-spin-button {
     }
   }
 }
-
 
 .sub-total-final {
   border-bottom: 1px solid white;
@@ -636,5 +642,4 @@ input[type="number"]::-webkit-inner-spin-button {
       font-size: 5rem;
     }
   }
-
 }

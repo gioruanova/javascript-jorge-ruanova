@@ -191,17 +191,31 @@ function totalCartCant() {
 
 // PRINT SUBTOTAL----------------------------------------------------------------------------
 function subTotalPrints() {
+
+    
+
+    let carritoFinal = customerCarrito.length
+    let msj = ``
+
+    if (carritoFinal === 0) {
+        msj = `<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Comenzar compra</button>`
+    } else {
+        msj = `    
+         <div class="subtotal-line"> <p>Su total es de: </p>
+         <p>$${finalAmount.toLocaleString('en-US')}</p></div>
+          <div class="cart-options-wrapper">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAllDelete()>Vaciar Carrito</button>
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Seguir comprando</button>
+          <button type="button" class="btn btn-success" onclick="endingPurchase()">Finalizar compra</button>
+      </div>
+          `
+    }
+
+
+
     const subTotal = document.getElementById("subtotaltodelete");
     subTotal.innerHTML = ""
-    subTotal.innerHTML = `      
-   <div class="subtotal-line"> <p>Su total es de: </p>
-   <p>$${finalAmount.toLocaleString('en-US')}</p></div>
-    <div class="cart-options-wrapper">
-    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll()>Vaciar Carrito</button>
-    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Seguir comprando</button>
-    <button type="button" class="btn btn-success" onclick="endingPurchase()">Finalizar compra</button>
-</div>
-    `
+    subTotal.innerHTML = msj
 
     const emptyButton = document.getElementById('empty-buttons')
     emptyButton.innerHTML = ""
@@ -221,6 +235,7 @@ function subTotalPrints() {
 
 // Change CANMT CART FUNCTION----------------------------------------------------------------------------
 function productToUpdate() {
+    
     let productSelectedCart = parseInt(event.srcElement.id)
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
@@ -247,6 +262,7 @@ function productToUpdate() {
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
 function productToDelete() {
+    
     let productSelectedCart = parseInt(event.srcElement.id)
     customerCarrito = customerCarrito.filter(data => data.id != productSelectedCart);
 
@@ -264,7 +280,6 @@ function productToDelete() {
 
 // COMPRA FINALIZADA----------------------------------------------------------------------------
 function endingPurchase() {
-
 
     let availableProducts = ""
 
@@ -292,6 +307,8 @@ function endingPurchase() {
 
     `
 
+    alert('Gracias por su compra!')
+
 }
 
 
@@ -301,6 +318,12 @@ function emptyAll() {
     totalCartCant()
     printCartPreview()
     subTotalPrints()
-    console.log('Storage to be process (current cart and ')
+    
+}
+
+function emptyAllDelete() {
+    emptyAll()
+    alert('Su carrito se ha vaciado')
+    
 }
 

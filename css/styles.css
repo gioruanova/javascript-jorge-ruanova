@@ -51,6 +51,13 @@ nav {
   color: #8c9fc4;
 }
 
+.carousel .slide {
+  height: 80vh;
+}
+.carousel .slide .carousel-inner {
+  height: 80vh;
+}
+
 .name-page {
   color: white;
   margin-left: 2rem;
