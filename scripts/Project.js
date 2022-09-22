@@ -10,14 +10,14 @@ let cantSelectedCart = 0
 
 // IMPORTS Product Images================================================================================
 let imgid1 = { src: "./imgs/pc.jpg" };
-let imgid2 = { src: "./imgs/laptop.jpg" };
-let imgid3 = { src: "./imgs/gabinete.jpg" };
+let imgid2 = { src: "./imgs/laptop.JPG" };
+let imgid3 = { src: "./imgs/gabinete.JPG" };
 let imgid4 = { src: "./imgs/iphonex.JPG" };
-let imgid5 = { src: "./imgs/samsung.jpg" };
+let imgid5 = { src: "./imgs/samsung.JPG" };
 let imgid6 = { src: "./imgs/iphone14.jpeg" };
 let imgid7 = { src: "./imgs/camara.jpg" };
-let imgid8 = { src: "./imgs/monitor.jpg" };
-let imgid9 = { src: "./imgs/teclado.jpg" };
+let imgid8 = { src: "./imgs/monitor.JPG" };
+let imgid9 = { src: "./imgs/teclado.JPG" };
 
 // PRODUCT AVAILABILITY
 let catalogoDisponible = [
