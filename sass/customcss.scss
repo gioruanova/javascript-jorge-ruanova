@@ -54,7 +54,6 @@ nav {
   height: 80vh;
   .carousel-inner {
     height: 80vh;
-    
   }
 }
 
@@ -641,5 +640,20 @@ input[type="number"]::-webkit-inner-spin-button {
     h2 {
       font-size: 5rem;
     }
+  }
+}
+
+.about {
+  height: 70vh;
+  h2 {
+    font-size: 3rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+  .sarasa{
+    font-size: 1rem;
+    padding: 0 5rem;
+    text-align: justify;
   }
 }

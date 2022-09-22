@@ -648,4 +648,19 @@ input[type=number]::-webkit-inner-spin-button {
   }
 }
 
+.about {
+  height: 70vh;
+}
+.about h2 {
+  font-size: 3rem;
+}
+.about p {
+  font-size: 2rem;
+}
+.about .sarasa {
+  font-size: 1rem;
+  padding: 0 5rem;
+  text-align: justify;
+}
+
 /*# sourceMappingURL=styles.css.map */
