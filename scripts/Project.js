@@ -122,7 +122,7 @@ function addToCart() {
 
         customerCarrito.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
-        alert('Producto agrgado al carrito')
+        alert(`Se ha agregado el proeducto ${productToAdd[0].nombre} al carrito`)
 
         totalCartAmount()
         totalCartCant()
@@ -192,7 +192,7 @@ function totalCartCant() {
 // PRINT SUBTOTAL----------------------------------------------------------------------------
 function subTotalPrints() {
 
-    
+
 
     let carritoFinal = customerCarrito.length
     let msj = ``
@@ -235,36 +235,55 @@ function subTotalPrints() {
 
 // Change CANMT CART FUNCTION----------------------------------------------------------------------------
 function productToUpdate() {
-    
+
     let productSelectedCart = parseInt(event.srcElement.id)
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
 
 
+
     objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
-    customerCarrito[objIndex].cantidad = parseInt(cantSelected)
 
-    totalCartAmount()
-    totalCartCant()
-
-    printCartPreview()
-    subTotalPrints()
-
-    const delayInMilliseconds = 400
-    setTimeout(function () {
-        alert(`Su cantidad ha sido actualizada a ${cantSelected}`)
-    }, delayInMilliseconds);
+    objDetalle = objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
+    let productToShow = customerCarrito[objIndex].nombre
 
 
+    if (parseInt(cantSelected) === customerCarrito[objIndex].cantidad) {
+        alert('Debe cambiar el nro de la cantidad para poder actualizar')
+    } else {
+        customerCarrito[objIndex].cantidad = parseInt(cantSelected)
+        totalCartAmount()
+        totalCartCant()
+
+        printCartPreview()
+        subTotalPrints()
+
+        const delayInMilliseconds = 400
+        setTimeout(function () {
+            alert(`Se actualizo la cantidad a ${cantSelected} del producto ${productToShow}`)
+        }, delayInMilliseconds);
+    }
 
 
 }
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
 function productToDelete() {
-    
+
     let productSelectedCart = parseInt(event.srcElement.id)
+    let productName = ""
+
+    let elementosEncontrados = customerCarrito.filter(
+        (elemento) => elemento.id === productSelectedCart
+    );
+
+    elementosEncontrados.map((e) => {
+        productName = e.nombre
+
+    })
+
     customerCarrito = customerCarrito.filter(data => data.id != productSelectedCart);
+
 
     totalCartAmount()
     totalCartCant()
@@ -273,7 +292,7 @@ function productToDelete() {
     subTotalPrints()
     const delayInMilliseconds = 400
     setTimeout(function () {
-        alert(`Su producto  se ha eliminado`)
+        alert(`Su producto ${productName} se ha eliminado`)
     }, delayInMilliseconds);
 }
 
@@ -318,12 +337,12 @@ function emptyAll() {
     totalCartCant()
     printCartPreview()
     subTotalPrints()
-    
+
 }
 
 function emptyAllDelete() {
     emptyAll()
     alert('Su carrito se ha vaciado')
-    
+
 }
 
