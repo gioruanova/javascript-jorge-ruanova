@@ -275,6 +275,7 @@ nav {
 .row .card {
   background-color: transparent;
   box-shadow: -4px 5px 10px #616161;
+  height: 100%;
 }
 .row .card .card-text-title {
   font-weight: 600;
@@ -306,6 +307,12 @@ nav {
   width: 10rem;
   height: 10rem;
   border-radius: 5px;
+}
+.row .card-body .product-description {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 @media (min-width: 1200px) {
   .row .card-body .product-description {
@@ -513,9 +520,9 @@ input[type=number]::-webkit-inner-spin-button {
 .carritoProducts .cart-product-card .cart-product-details img {
   width: 50%;
   height: auto;
-  border-radius: 5px;
-  border: 2px solid rgb(75, 74, 74);
-  box-shadow: -4px 5px 10px #535e68;
+  border-radius: 8px;
+  box-shadow: -4px 5px 10px #363636;
+  margin-bottom: 10px;
 }
 @media (min-width: 768px) {
   .carritoProducts .cart-product-card .cart-product-details img {
@@ -551,10 +558,10 @@ input[type=number]::-webkit-inner-spin-button {
   width: 35% !important;
 }
 
-.image-container {
+.image-container img {
   border-radius: 8px;
-  border: 3px solid rgb(75, 74, 74);
   box-shadow: -4px 5px 10px #363636;
+  margin-bottom: 10px;
 }
 
 .message-empty {
