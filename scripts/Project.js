@@ -2,10 +2,15 @@
 let productSelected = 0
 
 
-let customerCarrito = []
+let customerPurchaseCart = []
 let finalAmount = 0
 let finalQuantity = 0
 let cantSelectedCart = 0
+
+
+
+let purchaseNumber = 0
+
 
 
 // IMPORTS Product Images================================================================================
@@ -31,6 +36,7 @@ let catalogoDisponible = [
     { id: 8, nombre: "Monitor Curvo", precio: 5000, cant: 10, stock: true, image: imgid8 },
     { id: 9, nombre: "Teclado Gamer", precio: 5000, cant: 5, stock: true, image: imgid9 }
 ]
+
 
 
 
@@ -102,6 +108,7 @@ for (const producto of catalogoDisponible) {
           </div>
       </div>`;
     contenedorProductos.append(cardProd);
+
 }
 
 
@@ -120,7 +127,7 @@ function addToCart() {
 
     } else {
 
-        customerCarrito.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
+        customerPurchaseCart.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
         alert(`Se ha agregado el proeducto ${productToAdd[0].nombre} al carrito`)
 
@@ -129,6 +136,7 @@ function addToCart() {
 
         printCartPreview()
         subTotalPrints()
+
     }
 }
 
@@ -136,7 +144,7 @@ function addToCart() {
 function printCartPreview() {
     const cartContent = document.getElementById("carritoProducts");
     cartContent.innerHTML = ""
-    for (const productToPrint of customerCarrito) {
+    for (const productToPrint of customerPurchaseCart) {
         let cardProd = document.createElement("div");
         let totalAmountProd = productToPrint.precio * productToPrint.cantidad
         let productDetail = catalogoDisponible.filter(
@@ -172,14 +180,14 @@ function printCartPreview() {
 
 // SUBTOTAL CALC----------------------------------------------------------------------------
 function totalCartAmount() {
-    finalAmount = customerCarrito.reduce(
+    finalAmount = customerPurchaseCart.reduce(
         (acumulador, producto) => acumulador + (producto.precio * producto.cantidad), 0
     );
     return finalAmount
 }
 
 function totalCartCant() {
-    finalQuantity = customerCarrito.reduce(
+    finalQuantity = customerPurchaseCart.reduce(
         (acumulador, producto2) => acumulador + producto2.cantidad, 0
     )
     return finalQuantity
@@ -194,10 +202,10 @@ function subTotalPrints() {
 
 
 
-    let carritoFinal = customerCarrito.length
+    let customerPurchaseCartFinal = customerPurchaseCart.length
     let msj = ``
 
-    if (carritoFinal === 0) {
+    if (customerPurchaseCartFinal === 0) {
         msj = `<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Comenzar compra</button>`
     } else {
         msj = `    
@@ -242,16 +250,16 @@ function productToUpdate() {
 
 
 
-    objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
+    objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
 
-    objDetalle = objIndex = customerCarrito.findIndex((obj => obj.id == productSelectedCart));
-    let productToShow = customerCarrito[objIndex].nombre
+    objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
+    let productToShow = customerPurchaseCart[objIndex].nombre
 
 
-    if (parseInt(cantSelected) === customerCarrito[objIndex].cantidad) {
+    if (parseInt(cantSelected) === customerPurchaseCart[objIndex].cantidad) {
         alert('Debe cambiar el nro de la cantidad para poder actualizar')
     } else {
-        customerCarrito[objIndex].cantidad = parseInt(cantSelected)
+        customerPurchaseCart[objIndex].cantidad = parseInt(cantSelected)
         totalCartAmount()
         totalCartCant()
 
@@ -273,7 +281,7 @@ function productToDelete() {
     let productSelectedCart = parseInt(event.srcElement.id)
     let productName = ""
 
-    let elementosEncontrados = customerCarrito.filter(
+    let elementosEncontrados = customerPurchaseCart.filter(
         (elemento) => elemento.id === productSelectedCart
     );
 
@@ -282,7 +290,7 @@ function productToDelete() {
 
     })
 
-    customerCarrito = customerCarrito.filter(data => data.id != productSelectedCart);
+    customerPurchaseCart = customerPurchaseCart.filter(data => data.id != productSelectedCart);
 
 
     totalCartAmount()
@@ -299,12 +307,12 @@ function productToDelete() {
 
 // COMPRA FINALIZADA----------------------------------------------------------------------------
 function endingPurchase() {
-
     let availableProducts = ""
-
-    customerCarrito.forEach((a) => {
+    customerPurchaseCart.forEach((a) => {
         availableProducts += `<div>\n  ${a.nombre} $${a.precio.toLocaleString('en-US')} - (x ${a.cantidad})\n - Total: <b>$${(a.precio * a.cantidad).toLocaleString('en-US')}</b></div>`
     })
+
+
 
     const endingPurchaseSubtotal = document.getElementById("subtotaltodelete");
     endingPurchaseSubtotal.innerHTML = ""
@@ -323,26 +331,34 @@ function endingPurchase() {
      <div class="cart-options-wrapper padding-wrapper">
      <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll()>Finalizar</button>
      </div>
-
     `
-
     alert('Gracias por su compra!')
-
+    localStorageCartSave()
 }
 
 
 function emptyAll() {
-    customerCarrito = []
+    customerPurchaseCart = []
     totalCartAmount()
     totalCartCant()
     printCartPreview()
     subTotalPrints()
-
 }
 
 function emptyAllDelete() {
     emptyAll()
     alert('Su carrito se ha vaciado')
+}
+
+
+
+// =============LOCAL STORAGE=============
+function localStorageCartSave() {
+    let localData = localStorage.length
+    let localDateToUpdate = localData + 1
+
+    storageDetail = JSON.stringify(customerPurchaseCart);
+    localStorage.setItem(`${localDateToUpdate}`, storageDetail)
 
 }
 

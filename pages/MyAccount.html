@@ -30,37 +30,45 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
           <a class="nav-link" href="./AboutUs.html">About us</a>
-          <!-- <a class="nav-link" href="#Products">Products</a> -->
-          <a class="nav-link" href="#">Contact</a>
+
+          <a class="nav-link" href="./Contact.html">Contact</a>
 
         </div>
       </div>
     </div>
     <div class="cart cart-inner-pages">
-      <a href="./MyAccount.html"><button type="button" class="btn btn-success"> <i class="bi bi-person-circle"></i>Mi cuenta</button></a>
+      <a href="#"><button type="button" class="btn btn-success"><i class="bi bi-person-circle"></i> Mi
+          cuenta</button></a>
 
     </div>
 
   </nav>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
-
-
-
-
-  </div>
-  <section class="mainSection about">
+  <section class="mainSection myaccount">
 
     <div>
-      <h2>Contacto</h2>
-      <p>Y aca va el form</p>
-      <p class="sarasa">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, voluptas. Aperiam et vel impedit
-        molestiae dignissimos.
-      </p>
+      <h2> <i class="bi bi-person-circle"></i> My Account</h2>
+      <p class="salute">Bienvenido a su cuenta</p>
+      <div id="oldPurchases">
+        
+
+        <div class="detail-historic-purchase" id="detail-historic-purchase">
+
+          <p class="text-myaccount">Sus registros se encuentran vacios:</p>
+
+        </div>
 
 
-    </div>
+
+
+   
+
+
+
+
+
+
+      </div>
   </section>
 
 
@@ -94,70 +102,11 @@
 
   </footer>
 
-  <!-- MODAL1====================================================== -->
-
-  <div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalErrorLabel"><i class="bi bi-lightning-charge"></i> Fast Tech</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body-nostock">
-          Producto temporalmente fuera de stock.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL2====================================================== -->
-  <div class="modal fade" id="carritoDetail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="carritoDetailLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="carritoDetailLabel"><i class="bi bi-lightning-charge"></i> Su carrito</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="current-carrito-title"><i class="bi bi-cart"></i> Este es el detalle de su carrito</div>
-          <div class="carritoProducts" id="carritoProducts">
-
-            <div class="message-empty">Su carrito se encuentra vacio</div>
-            <!-- ----ARRAY PRODS---- -->
-
-            <!-- ----ARRAY PRODS---- -->
-
-          </div>
-          <div id="subtotal-container">
-            <div class="subtotal" id="subtotaltodelete">
-
-
-
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer" id="empty-buttons">
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Comenzar compra</button>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- MODAL====================================================== -->
 
 
 
 
-
-  <script src="./scripts/Project.js"></script>
+  <script src="../scripts/Storage.js"></script>
 
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

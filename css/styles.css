@@ -191,6 +191,13 @@ nav {
   font-weight: bold;
 }
 
+.cart-inner-pages {
+  padding: 0 !important;
+}
+.cart-inner-pages a button {
+  margin-right: 0 !important;
+}
+
 .main-content {
   margin: 2rem 0;
 }
@@ -668,6 +675,52 @@ input[type=number]::-webkit-inner-spin-button {
   font-size: 1rem;
   padding: 0 5rem;
   text-align: justify;
+}
+
+.text-myaccount {
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title-purchase {
+  text-align: start;
+  font-weight: bold;
+  margin: 0;
+}
+
+.detail-historic-purchase {
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.sub-detail {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+.sub-detail p {
+  margin: 0;
+}
+.sub-detail p:last-child {
+  margin-left: 10px;
+}
+.sub-detail p:last-child::before {
+  content: "(x";
+}
+.sub-detail p:last-child::after {
+  content: ")";
+}
+
+.totalamount-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
+}
+.totalamount-account p {
+  margin: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

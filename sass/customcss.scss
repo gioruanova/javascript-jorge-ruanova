@@ -17,7 +17,7 @@ nav {
   position: sticky !important;
   top: 0;
 }
-// ----testing-----
+
 .navbar {
   padding-bottom: 0;
   padding: 0;
@@ -151,7 +151,6 @@ nav {
       border-color: #6e6e6e;
     }
   }
-
   p {
     margin: 0;
     margin-right: 1rem;
@@ -183,6 +182,15 @@ nav {
     }
     .cart-value {
       font-weight: bold;
+    }
+  }
+}
+
+.cart-inner-pages {
+  padding: 0 !important;
+  a {
+    button {
+      margin-right: 0 !important;
     }
   }
 }
@@ -314,7 +322,7 @@ nav {
       display: flex;
       flex-direction: column;
       height: 100%;
-      justify-content: space-between;;
+      justify-content: space-between;
       @media (min-width: 1200px) {
         display: flex;
         flex-direction: column;
@@ -662,5 +670,51 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 1rem;
     padding: 0 5rem;
     text-align: justify;
+  }
+}
+
+.text-myaccount {
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title-purchase {
+  text-align: start;
+  font-weight: bold;
+  margin: 0;
+}
+
+.detail-historic-purchase {
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.sub-detail {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  p {
+    margin: 0;
+    &:last-child {
+      margin-left: 10px;
+      &::before {
+        content: "(x";
+      }
+      &::after {
+        content: ")";
+      }
+    }
+  }
+}
+
+.totalamount-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
+  p {
+    margin: 0;
   }
 }
