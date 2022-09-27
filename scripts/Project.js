@@ -1,17 +1,10 @@
 // GLOBAL=======================================================================================
 let productSelected = 0
-
-
 let customerPurchaseCart = []
 let finalAmount = 0
 let finalQuantity = 0
 let cantSelectedCart = 0
-
-
-
-let purchaseNumber = 0
-
-
+// let purchaseNumber = 0
 
 // IMPORTS Product Images================================================================================
 let imgid1 = { src: "./imgs/pc.jpg" };
@@ -36,9 +29,6 @@ let catalogoDisponible = [
     { id: 8, nombre: "Monitor Curvo", precio: 5000, cant: 10, stock: true, image: imgid8 },
     { id: 9, nombre: "Teclado Gamer", precio: 5000, cant: 5, stock: true, image: imgid9 }
 ]
-
-
-
 
 
 //PRINT PRODUCTS AVAILABLE=========================================================
@@ -108,7 +98,6 @@ for (const producto of catalogoDisponible) {
           </div>
       </div>`;
     contenedorProductos.append(cardProd);
-
 }
 
 
@@ -116,27 +105,19 @@ for (const producto of catalogoDisponible) {
 function addToCart() {
     let productSelected = parseInt(event.srcElement.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
-
     let productToAdd = catalogoDisponible.filter(
         (elemento) => elemento.id === productSelected
     );
-
-
     if (cantSelected == 0) {
         alert('Debe seleccionar un nro para agregar al carrito')
-
     } else {
-
         customerPurchaseCart.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
         alert(`Se ha agregado el proeducto ${productToAdd[0].nombre} al carrito`)
-
         totalCartAmount()
         totalCartCant()
-
         printCartPreview()
         subTotalPrints()
-
     }
 }
 
@@ -185,7 +166,6 @@ function totalCartAmount() {
     );
     return finalAmount
 }
-
 function totalCartCant() {
     finalQuantity = customerPurchaseCart.reduce(
         (acumulador, producto2) => acumulador + producto2.cantidad, 0
@@ -194,17 +174,10 @@ function totalCartCant() {
 }
 
 
-
-
-
 // PRINT SUBTOTAL----------------------------------------------------------------------------
 function subTotalPrints() {
-
-
-
     let customerPurchaseCartFinal = customerPurchaseCart.length
     let msj = ``
-
     if (customerPurchaseCartFinal === 0) {
         msj = `<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Comenzar compra</button>`
     } else {
@@ -218,84 +191,57 @@ function subTotalPrints() {
       </div>
           `
     }
-
-
-
     const subTotal = document.getElementById("subtotaltodelete");
     subTotal.innerHTML = ""
     subTotal.innerHTML = msj
-
     const emptyButton = document.getElementById('empty-buttons')
     emptyButton.innerHTML = ""
-
     const amount = document.getElementById('cart-value detail-amount')
     amount.innerHTML = ""
     amount.innerHTML = `$${finalAmount.toLocaleString('en-US')}`
-
-
-
     const quantityTotal = document.getElementById('cart-value detail-cant')
     quantityTotal.innerHTML = ""
     quantityTotal.innerHTML = finalQuantity
 }
 
 
-
-// Change CANMT CART FUNCTION----------------------------------------------------------------------------
+// CART UPDATE QUANTITY---------------------------------------------------------------------------
 function productToUpdate() {
-
     let productSelectedCart = parseInt(event.srcElement.id)
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
-
-
-
     objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
-
     objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
     let productToShow = customerPurchaseCart[objIndex].nombre
-
-
     if (parseInt(cantSelected) === customerPurchaseCart[objIndex].cantidad) {
         alert('Debe cambiar el nro de la cantidad para poder actualizar')
     } else {
         customerPurchaseCart[objIndex].cantidad = parseInt(cantSelected)
         totalCartAmount()
         totalCartCant()
-
         printCartPreview()
         subTotalPrints()
-
         const delayInMilliseconds = 400
         setTimeout(function () {
             alert(`Se actualizo la cantidad a ${cantSelected} del producto ${productToShow}`)
         }, delayInMilliseconds);
     }
-
-
 }
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
 function productToDelete() {
-
     let productSelectedCart = parseInt(event.srcElement.id)
     let productName = ""
-
     let elementosEncontrados = customerPurchaseCart.filter(
         (elemento) => elemento.id === productSelectedCart
     );
-
     elementosEncontrados.map((e) => {
         productName = e.nombre
 
     })
-
     customerPurchaseCart = customerPurchaseCart.filter(data => data.id != productSelectedCart);
-
-
     totalCartAmount()
     totalCartCant()
-
     printCartPreview()
     subTotalPrints()
     const delayInMilliseconds = 400
@@ -311,21 +257,15 @@ function endingPurchase() {
     customerPurchaseCart.forEach((a) => {
         availableProducts += `<div>\n  ${a.nombre} $${a.precio.toLocaleString('en-US')} - (x ${a.cantidad})\n - Total: <b>$${(a.precio * a.cantidad).toLocaleString('en-US')}</b></div>`
     })
-
-
-
     const endingPurchaseSubtotal = document.getElementById("subtotaltodelete");
     endingPurchaseSubtotal.innerHTML = ""
 
     const endingPurchase = document.getElementById("carritoProducts");
     endingPurchase.innerHTML = ""
-
     endingPurchase.innerHTML = `      
     <p>Su compra ha sido realizada.\n A continuacion podra ver el detalle de la misma:</p>
     <div class="sub-total-final">${availableProducts}</div>
-
     <div class="saludo-final">Gracias por su compra!</div>
-
     <div class="subtotal-line"> <p>Su total es de: </p>
     <p>$${finalAmount.toLocaleString('en-US')}</p></div>
      <div class="cart-options-wrapper padding-wrapper">
@@ -334,9 +274,10 @@ function endingPurchase() {
     `
     alert('Gracias por su compra!')
     localStorageCartSave()
+
 }
 
-
+// RESETEAR TODO----------------------------------------------------------------------------
 function emptyAll() {
     customerPurchaseCart = []
     totalCartAmount()
@@ -345,20 +286,31 @@ function emptyAll() {
     subTotalPrints()
 }
 
+// VACIAR CARRITO----------------------------------------------------------------------------
 function emptyAllDelete() {
     emptyAll()
     alert('Su carrito se ha vaciado')
 }
 
 
+// LOCAL STORAGE SAVE----------------------------------------------------------------------------
 
-// =============LOCAL STORAGE=============
 function localStorageCartSave() {
-    let localData = localStorage.length
-    let localDateToUpdate = localData + 1
+    let currentValue = localStorage.length
+    let clave = 0
+    let purchasesStorage = []
+    for (let i = 0; i < localStorage.length; i++) {
+        clave = parseInt(localStorage.key(i));
+        for (let i = 0; i < clave; i++) {
+            purchasesStorage[i] = clave
+        }
+    }
+    const purchaseNumber = purchasesStorage[purchasesStorage.length - 1]
 
+    let currentValueUpdate = currentValue < 1 ? 0 : purchaseNumber
+    
+    let localDateToUpdate = currentValueUpdate + 1
     storageDetail = JSON.stringify(customerPurchaseCart);
     localStorage.setItem(`${localDateToUpdate}`, storageDetail)
-
 }
 

@@ -141,16 +141,23 @@ nav {
 
 .cart {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: grey;
   padding: 0 10px 0 0px;
   width: 100%;
   margin: 0;
   box-shadow: -4px 5px 10px #535e68;
+  padding: 5px 10px;
 }
 .cart button {
   transition: all 200ms ease;
+}
+.cart button p {
+  display: none;
+}
+.cart button i {
+  margin-right: 0 !important;
 }
 .cart button:hover {
   background-color: #6e6e6e;
@@ -167,6 +174,17 @@ nav {
     margin: 0 1rem;
     justify-content: center;
     border-radius: 5px;
+  }
+  .cart button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .cart button p {
+    display: flex;
+  }
+  .cart button i {
+    margin-right: 1rem !important;
   }
 }
 .cart .bi {
@@ -189,6 +207,9 @@ nav {
 }
 .cart .cart-detail .cart-value {
   font-weight: bold;
+}
+.cart a {
+  text-decoration: none;
 }
 
 .cart-inner-pages {
@@ -394,6 +415,10 @@ input[type=number]::-webkit-inner-spin-button {
 
 /* flipping class and key frames*/
 .flipX {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   animation: 2s anim-flipX ease infinite;
   font-size: 12px;
   margin: 0;
@@ -401,6 +426,10 @@ input[type=number]::-webkit-inner-spin-button {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   text-align: center;
+}
+.flipX p {
+  margin: 0;
+  padding-left: 10px;
 }
 @media (min-width: 768px) {
   .flipX {
@@ -688,38 +717,63 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.copyright {
+  text-decoration: none;
+  font-weight: bold;
+  transition: 200ms;
+}
+
+.second {
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
 .detail-historic-purchase {
   width: 70%;
   margin: 2rem auto;
 }
-
-.sub-detail {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  align-items: center;
-}
-.sub-detail p {
+.detail-historic-purchase button p {
   margin: 0;
 }
-.sub-detail p:last-child {
-  margin-left: 10px;
+
+.card-compra {
+  border: 2px solid black;
+  margin: 1rem auto;
+  padding: 1rem;
 }
-.sub-detail p:last-child::before {
-  content: "(x";
-}
-.sub-detail p:last-child::after {
-  content: ")";
+.card-compra p {
+  margin: 0;
 }
 
-.totalamount-account {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-  margin-bottom: 2rem;
+.historic-product-detail {
+  margin-bottom: 1rem;
+  border: 1px solid red;
 }
-.totalamount-account p {
+
+.body-accordion {
+  margin: 1rem 0;
+}
+.body-accordion p {
+  margin: 0;
+}
+
+.accordion-button {
+  background-color: rgb(63, 63, 63) !important;
+  color: white !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (min-width: 1024px) {
+  .accordion-button {
+    flex-direction: row;
+  }
+}
+.accordion-button p {
+  margin: 0;
+}
+.accordion-button::after {
   margin: 0;
 }
 

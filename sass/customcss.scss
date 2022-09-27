@@ -136,15 +136,22 @@ nav {
 
 .cart {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   background-color: grey;
   padding: 0 10px 0 0px;
   width: 100%;
   margin: 0;
   box-shadow: -4px 5px 10px #535e68;
+  padding: 5px 10px;
   button {
     transition: all 200ms ease;
+    p {
+      display: none;
+    }
+    i {
+      margin-right: 0 !important;
+    }
     &:hover {
       background-color: #6e6e6e;
       color: white;
@@ -160,6 +167,17 @@ nav {
     margin: 0 1rem;
     justify-content: center;
     border-radius: 5px;
+    button {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      p {
+        display: flex;
+      }
+      i {
+        margin-right: 1rem !important;
+      }
+    }
   }
   .bi {
     margin-right: 1rem;
@@ -183,6 +201,9 @@ nav {
     .cart-value {
       font-weight: bold;
     }
+  }
+  a {
+    text-decoration: none;
   }
 }
 
@@ -402,6 +423,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* flipping class and key frames*/
 .flipX {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   animation: 2s anim-flipX ease infinite;
   font-size: 12px;
   margin: 0;
@@ -409,6 +434,10 @@ input[type="number"]::-webkit-inner-spin-button {
   font-family: $bodyFont;
   font-weight: 600;
   text-align: center;
+  p {
+    margin: 0;
+    padding-left: 10px;
+  }
   @media (min-width: 768px) {
     font-size: 20px;
   }
@@ -684,37 +713,62 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.copyright {
+  text-decoration: none;
+  font-weight: bold;
+  transition: $transition;
+}
+
+.second {
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
 .detail-historic-purchase {
   width: 70%;
   margin: 2rem auto;
-}
-
-.sub-detail {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  align-items: center;
-  p {
-    margin: 0;
-    &:last-child {
-      margin-left: 10px;
-      &::before {
-        content: "(x";
-      }
-      &::after {
-        content: ")";
-      }
+  button {
+    p {
+      margin: 0;
     }
   }
 }
 
-.totalamount-account {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-  margin-bottom: 2rem;
+.card-compra {
+  border: 2px solid black;
+  margin: 1rem auto;
+  padding: 1rem;
   p {
+    margin: 0;
+  }
+}
+
+.historic-product-detail {
+  margin-bottom: 1rem;
+  border: 1px solid red;
+}
+
+.body-accordion {
+  margin: 1rem 0;
+  p {
+    margin: 0;
+  }
+}
+
+.accordion-button {
+  background-color: rgb(63, 63, 63) !important;
+  color: white !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    }
+  p {
+    margin: 0;
+  }
+  justify-content: space-between;
+  &::after {
     margin: 0;
   }
 }
