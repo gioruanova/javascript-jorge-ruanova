@@ -215,6 +215,9 @@ nav {
 .cart-inner-pages {
   padding: 0 !important;
 }
+.cart-inner-pages a:nth-child(2) {
+  margin-left: 10px;
+}
 .cart-inner-pages a button {
   margin-right: 0 !important;
 }
@@ -698,9 +701,6 @@ input[type=number]::-webkit-inner-spin-button {
   }
 }
 
-.about {
-  height: 70vh;
-}
 .about h2 {
   font-size: 3rem;
 }
@@ -908,19 +908,24 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .number-cart {
-  background: rgb(48, 48, 48);
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2px;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: -2px;
-  top: -3px;
-  border: 2px solid white;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .number-cart {
+    background: rgb(48, 48, 48);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -2px;
+    top: -3px;
+    border: 2px solid white;
+  }
 }
 .number-cart p {
   margin: 0;
@@ -933,6 +938,10 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   align-items: center;
   position: relative;
+}
+
+.form-main-title i {
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

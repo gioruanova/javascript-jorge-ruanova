@@ -1,6 +1,61 @@
+// =============STORAGE AND LOGIN VALIDATION=============
+const headerComponent = document.getElementById("initialHeader");
+const logOffGenerator = document.getElementById("logOffSection");
+let currentHistory = localStorage.length
+let logOffButton = `<a href="#"><button type="button" class="btn btn-danger" onclick="logOut()"><i class="bi bi-escape"></i>
+<p>Cerrar</p>
+</button></a>`
+
+let inputNombre;
+let inputMail;
+let formulario;
+let logueado = false
+
+
+
+
+function createLogOffButton() {
+  logOffGenerator.innerHTML = logOffButton
+}
+
+
+
+
+function logInStatus() {
+  nameUserSession = sessionStorage.getItem("user");
+  mailUserSession = sessionStorage.getItem("email");
+  (nameUserSession != null) ? logueado = true : logueado = false
+}
+logInStatus()
+
+// =============INJECT HTML VARIABLES=============
+const emptyStore = `
+<h2> <i class="bi bi-person-circle"></i> My Account</h2>
+<p class="salute">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
+<p class="text">A continuacion podra ver el historial de sus operaciones realizadas:</p>
+`
+const filledStore = `
+<h2> <i class="bi bi-person-circle"></i> My Account</h2>
+<p class="salute">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
+<p class="text">Usted no tiene historial de compras</p>
+`
+
+// =============STORE VALIDATION RESULT=============
+currentHistory < 1 ? true : false
+let validationInject = currentHistory ? emptyStore : filledStore
+logueado ? startExperience() : printForm()
+
+
+
+
 // =============IMPRIMIR HISTORIAL=============
 function printStorage() {
   const contenedorProductos = document.getElementById("detail-historic-purchase");
+
+
+
+  headerComponent.innerHTML = validationInject
+
   function sorting(a, b) {
     return a > b ? 1 : a > b ? -10 : 0;
   }
@@ -29,8 +84,8 @@ function printStorage() {
             <button id="${clave}"type="button" class="btn btn-danger" onClick=deleteElementStorage(${clave}) title="Eliminar registro""><i class="bi bi-trash"></i></button>
     </div>
 `   ;
-    
-for (const prodcutos of valor) {
+
+    for (const prodcutos of valor) {
       cardProd.innerHTML += `
 <div class="compra-detail-content">
 <p class="product-name">${prodcutos.nombre}</p>
@@ -62,9 +117,7 @@ function deleteElementStorage(idToDelete) {
 }
 
 // =============DELETE ALL LOCALSTORAGE=============
-let currentHistory = localStorage.length
 
-currentHistory < 1 ? true : false
 
 function deleteAll() {
   localStorage.clear();
@@ -80,7 +133,7 @@ function createButton() {
   if (currentHistory) {
     buttonSpace.innerHTML = `
   <button "type="button" class="btn btn-warning" onClick=deleteAll() title="Borrar historial">
-  <i class="bi bi-check2-circle"></i>
+  <i class="bi bi-file-earmark-x"></i>
   </button>
   <a href="/">
   <button "type="button" class="btn btn-info" title="Volver a la tienda">
@@ -109,13 +162,78 @@ function reloadPage() {
 function startExperience() {
   createButton()
   printStorage()
+  createLogOffButton()
 }
 
-startExperience()
 
-let logueado = false
-
-
-logueado ? console.log('Logueado con exito') : console.log('Debe loguearse para poder utilizar el servicio')
+// ===============FORM PROCESS===============
 
 
+
+let validationLog;
+
+
+function printForm() {
+  headerComponent.innerHTML = `
+
+  <h2 class="form-main-title"> <i class="bi bi-person-circle"></i>Registro</h2>
+<p class="salute">Registrese para comenzar a operar:</p>
+
+  <form action="" id="formulario">
+  
+  <input type="text" name="fname" placeholder="Su nombre" id="inputNombre"><br>
+  
+  <br>
+  <input type="email" name="lname" placeholder="Su email" id="inputMail"><br><br>
+  
+  <input class="btn btn-primary"type="submit" value="Login" id>
+  </form>
+  `
+  inicializarElementos();
+  inicializarEventos();
+}
+
+let nombre
+let mail
+
+
+function inicializarElementos() {
+  formulario = document.getElementById("formulario");
+  inputNombre = document.getElementById("inputNombre");
+  inputMail = document.getElementById("inputMail");
+
+
+
+}
+
+function inicializarEventos() {
+  formulario.onsubmit = (event) => validarFormulario(event);
+}
+function validarFormulario() {
+  nombre = inputNombre.value;
+  mail = inputMail.value;
+
+
+
+  if (nombre == "" || mail == "") {
+    alert('Debe completar todos los campos para continuar')
+  } else {
+    recordUserSession()
+  }
+
+}
+
+
+
+function recordUserSession() {
+  sessionStorage.setItem("user", nombre)
+  sessionStorage.setItem("email", mail)
+  alert('Logueando....')
+}
+
+
+function logOut() {
+  sessionStorage.clear()
+  alert('Gracias. Vuevla pronto!')
+  reloadPage()
+}

@@ -6,6 +6,21 @@ let finalQuantity = 0
 let cantSelectedCart = 0
 // let purchaseNumber = 0
 
+// LOGIN VALIDATION=============================================================================
+
+nameUserSession = sessionStorage.getItem("user");
+mailUserSession = sessionStorage.getItem("email");
+(nameUserSession != null) ? logueado = true : logueado = false
+
+console.log(logueado)
+
+if (logueado) {
+    console.log('esta logueado')
+} else {
+    console.log('No esta logueado')
+}
+
+
 // IMPORTS Product Images================================================================================
 let imgid1 = { src: "./imgs/pc.jpg" };
 let imgid2 = { src: "./imgs/laptop.JPG" };
@@ -103,6 +118,16 @@ for (const producto of catalogoDisponible) {
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
 function addToCart() {
+    if (logueado) {
+        addToCartProceed()
+    } else {
+        alert('Debe estar logueado para poder comprar')
+    }
+}
+
+
+function addToCartProceed() {
+
     let productSelected = parseInt(event.srcElement.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
     let productToAdd = catalogoDisponible.filter(
@@ -152,7 +177,7 @@ function printCartPreview() {
         </div>
         <div class="button-wrapper">
           <button type="button" class="btn btn-primary" id="${productToPrint.id}" onClick=productToUpdate() title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
-          <button type="button" class="btn btn-danger" id="${productToPrint.id}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-x"></i></button>
+          <button type="button" class="btn btn-danger" id="${productToPrint.id}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-dash"></i></button>
         </div>
       </div>`;
         cartContent.append(cardProd);
@@ -185,8 +210,8 @@ function subTotalPrints() {
          <div class="subtotal-line"> <p>Su total es de: </p>
          <p>$${finalAmount.toLocaleString('en-US')}</p></div>
           <div class="cart-options-wrapper">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAllDelete() title="Vaciar carrito"><i class="bi bi-trash"></i></button>
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" title="Seguir comprando"><i class="bi bi-cart-plus"></i></button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAllDelete() title="Vaciar carrito"><i class="bi bi-cart-x"></i></i></button>
+          <button type="button" class="btn btn-info" data-bs-dismiss="modal" title="Seguir comprando"><i class="bi bi-cart-plus"></i></button>
           <button type="button" class="btn btn-success" onclick="endingPurchase()" title="Finalizar compra"><i class="bi bi-bag-check"></i></button>
       </div>
           `
@@ -312,7 +337,7 @@ function localStorageCartSave() {
     const purchaseNumber = purchasesStorage[purchasesStorage.length - 1]
 
     let currentValueUpdate = currentValue < 1 ? 0 : purchaseNumber
-    
+
     let localDateToUpdate = currentValueUpdate + 1
     storageDetail = JSON.stringify(customerPurchaseCart);
     localStorage.setItem(`${localDateToUpdate}`, storageDetail)

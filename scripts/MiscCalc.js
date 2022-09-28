@@ -14,11 +14,3 @@ if (currentYear === devYear) {
 copyFooter.innerHTML = dateToShow
 
 // =============RANDOM MESAGES=============
-const promoType = document.getElementById("promo-name");
-const promoDetail = document.getElementById("promo-detail");
-
-const promoTypeText = "Tiempo limitado"
-const promoDetailText = "Envios gratis en compras superiores a $5.000"
-
-promoType.innerHTML = promoTypeText
-promoDetail.innerHTML = promoDetailText
