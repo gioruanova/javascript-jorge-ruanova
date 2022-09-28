@@ -267,7 +267,12 @@ nav {
 }
 
 .footer-container {
-  padding: 0 5rem;
+  padding: 0 1rem;
+}
+@media (min-width: 1200px) {
+  .footer-container {
+    padding: 0 5rem;
+  }
 }
 .footer-container a {
   color: white;
@@ -340,6 +345,7 @@ nav {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   justify-content: space-between;
 }
 @media (min-width: 1200px) {
@@ -416,7 +422,7 @@ input[type=number]::-webkit-inner-spin-button {
 /* flipping class and key frames*/
 .flipX {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: 2s anim-flipX ease infinite;
@@ -434,6 +440,7 @@ input[type=number]::-webkit-inner-spin-button {
 @media (min-width: 768px) {
   .flipX {
     font-size: 20px;
+    flex-direction: row;
   }
 }
 .flipX span {
@@ -702,8 +709,13 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .about .sarasa {
   font-size: 1rem;
-  padding: 0 5rem;
+  padding: 0 1rem;
   text-align: justify;
+}
+@media (min-width: 1024px) {
+  .about .sarasa {
+    padding: 0 5rem;
+  }
 }
 
 .text-myaccount {
@@ -737,12 +749,20 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .card-compra {
-  border: 2px solid black;
+  box-shadow: -4px 5px 10px #616161;
+  color: white;
+  background-color: #616161;
+  border-radius: 5px;
   margin: 1rem auto;
   padding: 1rem;
+  transition: 200ms;
 }
 .card-compra p {
   margin: 0;
+}
+.card-compra:hover {
+  transform: scale(1.02);
+  cursor: pointer;
 }
 
 .historic-product-detail {
@@ -750,31 +770,141 @@ input[type=number]::-webkit-inner-spin-button {
   border: 1px solid red;
 }
 
-.body-accordion {
-  margin: 1rem 0;
-}
-.body-accordion p {
-  margin: 0;
-}
-
-.accordion-button {
-  background-color: rgb(63, 63, 63) !important;
-  color: white !important;
+.header-resumen {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  border-bottom: 1px dashed white;
+  padding-bottom: 10px;
 }
 @media (min-width: 1024px) {
-  .accordion-button {
+  .header-resumen {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.header-resumen .left-header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .header-resumen .left-header {
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+}
+.header-resumen .left-header .amount-detail {
+  display: flex;
+  flex-direction: column;
+}
+.header-resumen .left-header .amount-detail p:last-child {
+  margin-left: 10px;
+}
+@media (min-width: 1024px) {
+  .header-resumen .left-header .amount-detail {
     flex-direction: row;
   }
 }
-.accordion-button p {
-  margin: 0;
+
+.compra-detail-content {
+  border-bottom: 1px solid white;
+  padding: 5px 0;
 }
-.accordion-button::after {
-  margin: 0;
+.compra-detail-content:last-child {
+  border-bottom: none;
+}
+
+.product-name {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+@media (min-width: 1024px) {
+  .product-name {
+    text-align: initial;
+  }
+}
+
+.flex-panels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .flex-panels {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+.flex-panels .left-panel-detail {
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .flex-panels .left-panel-detail {
+    text-align: initial;
+  }
+}
+.flex-panels .left-panel-detail .quantity::before {
+  content: "(x";
+}
+.flex-panels .left-panel-detail .quantity::after {
+  content: ")";
+}
+.flex-panels .right-panel-detail {
+  display: flex;
+  flex-direction: row;
+}
+.flex-panels .right-panel-detail::before {
+  content: "Total:";
+  font-weight: bold;
+  margin-right: 10px;
+}
+@media (min-width: 1024px) {
+  .flex-panels .right-panel-detail::before {
+    content: "";
+  }
+}
+
+#buttonGenerator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3rem;
+}
+#buttonGenerator button,
+#buttonGenerator a {
+  font-size: 2rem;
+  transition: 200ms;
+}
+#buttonGenerator button:hover,
+#buttonGenerator a:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+#buttonGenerator a {
+  margin-left: 10px;
+}
+@media (min-width: 1024px) {
+  #buttonGenerator button,
+#buttonGenerator a {
+    font-size: 2rem;
+  }
+}
+
+.btn {
+  transition: 200ms;
+}
+.btn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: -4px 5px 10px rgba(255, 255, 255, 0.6784313725);
 }
 
 /*# sourceMappingURL=styles.css.map */

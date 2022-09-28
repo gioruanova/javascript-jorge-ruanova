@@ -15,29 +15,36 @@ function printStorage() {
       );
     }
     let cardProd = document.createElement("div");
+    cardProd.className = "card-compra"
     cardProd.innerHTML = `    
-<div id='detail-historic' lcass="accordion" id="accordionPanelsStayOpen">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="PanelsStayOpen-headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#PanelsStayOpen-collapse-${clave}" aria-expanded="true" aria-controls="PanelsStayOpen">
-        <p>Compra: ${clave}</p>
-        <p>Total Compra: $${finalAmount.toLocaleString('en-US')}</p>
-      </button>
-    </h2>
-  </div>
-</div>
-<button id="${clave}"type="button" class="btn btn-danger" onClick=deleteElementStorage(${clave})><p>Borrar registro <i class="bi bi-x-circle"></i></p></button>
+    <div class="header-resumen">
+        <div class="left-header">
+        <p><b>Compra: </b>${clave}</p>
+            <div class="amount-detail">
+            <p><b>Total Compra:</b></p>
+            <p>$${finalAmount.toLocaleString('en-US')}</p>
+            </div>
+        </div>
+            <button id="${clave}"type="button" class="btn btn-danger" onClick=deleteElementStorage(${clave}) title="Eliminar registro""><i class="bi bi-trash"></i></button>
+    </div>
+
+
 `   ;
     for (const prodcutos of valor) {
       cardProd.innerHTML += `
-<div id="#PanelsStayOpen-collapse-${clave}" class="accordion-collapse collapse show" aria-labelledby="PanelsStayOpen-headingOne">
-  <div class="body-accordion">
-    <p> <strong>${prodcutos.nombre}</strong></p>
-    <p><strong>Precio Unidad:</strong> $${prodcutos.precio.toLocaleString('en-US')}</p>
-    <p><strong>Cantidad:</strong>${prodcutos.cantidad}</p>
-    <p><strong>Importe total: </strong> $${prodcutos.totalAmount.toLocaleString('en-US')}</p>
-  </div>
+<div class="compra-detail-content">
+<p class="product-name">${prodcutos.nombre}</p>
+<div class="flex-panels">
+<div class="left-panel-detail">
+<p><strong>Precio Unidad:</strong> $${prodcutos.precio.toLocaleString('en-US')}</p>
+<p class="quantity">${prodcutos.cantidad}</p>
 </div>
+<div class="right-panel-detail">
+<p>$${prodcutos.totalAmount.toLocaleString('en-US')}</p>
+</div>
+</div>
+</div>
+
   `
     }
     contenedorProductos.append(cardProd)
@@ -72,12 +79,12 @@ function createButton() {
   const buttonSpace = document.getElementById("buttonGenerator");
   if (currentHistory) {
     buttonSpace.innerHTML = `
-  <button "type="button" class="btn btn-warning" onClick=deleteAll()>
- Eliminar Historial
+  <button "type="button" class="btn btn-warning" onClick=deleteAll() title="Borrar historial">
+  <i class="bi bi-check2-circle"></i>
   </button>
   <a href="/">
-  <button "type="button" class="btn btn-info" >
-  Volver al E-Shop
+  <button "type="button" class="btn btn-info" title="Volver a la tienda">
+  <i class="bi bi-house-door"></i>
    </button>
   </a>
   `

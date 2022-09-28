@@ -93,7 +93,7 @@ for (const producto of catalogoDisponible) {
      <div class="wrapper-cant">
      ${stockConversion3(producto.stock, producto.id, producto.cant)}
      </div>
-          <button class=${buttonClass(producto.cant)} id=${producto.id}>Agregar al carrito</button>
+          <button class=${buttonClass(producto.cant)} id=${producto.id} title="Agregar item"><i class="bi bi-cart-plus"></i></button>
      </div>
           </div>
       </div>`;
@@ -151,8 +151,8 @@ function printCartPreview() {
           </div>
         </div>
         <div class="button-wrapper">
-          <button type="button" class="btn btn-primary" id="${productToPrint.id}" onClick=productToUpdate()>Actualizar</button>
-          <button type="button" class="btn btn-danger" id="${productToPrint.id}" onClick=productToDelete()>Quitar del carrito</button>
+          <button type="button" class="btn btn-primary" id="${productToPrint.id}" onClick=productToUpdate() title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
+          <button type="button" class="btn btn-danger" id="${productToPrint.id}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-x"></i></button>
         </div>
       </div>`;
         cartContent.append(cardProd);
@@ -179,15 +179,15 @@ function subTotalPrints() {
     let customerPurchaseCartFinal = customerPurchaseCart.length
     let msj = ``
     if (customerPurchaseCartFinal === 0) {
-        msj = `<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Comenzar compra</button>`
+        msj = `<button type="button" class="btn btn-warning" data-bs-dismiss="modal" title="Comenzar compra"><i class="bi bi-cart-plus"></i></button>`
     } else {
         msj = `    
          <div class="subtotal-line"> <p>Su total es de: </p>
          <p>$${finalAmount.toLocaleString('en-US')}</p></div>
           <div class="cart-options-wrapper">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAllDelete()>Vaciar Carrito</button>
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Seguir comprando</button>
-          <button type="button" class="btn btn-success" onclick="endingPurchase()">Finalizar compra</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAllDelete() title="Vaciar carrito"><i class="bi bi-trash"></i></button>
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" title="Seguir comprando"><i class="bi bi-cart-plus"></i></button>
+          <button type="button" class="btn btn-success" onclick="endingPurchase()" title="Finalizar compra"><i class="bi bi-bag-check"></i></button>
       </div>
           `
     }
@@ -269,7 +269,7 @@ function endingPurchase() {
     <div class="subtotal-line"> <p>Su total es de: </p>
     <p>$${finalAmount.toLocaleString('en-US')}</p></div>
      <div class="cart-options-wrapper padding-wrapper">
-     <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll()>Finalizar</button>
+     <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll() title="Finalizar"><i class="bi bi-check2-circle"></i></button>
      </div>
     `
     alert('Gracias por su compra!')
