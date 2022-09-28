@@ -12,13 +12,7 @@ nameUserSession = sessionStorage.getItem("user");
 mailUserSession = sessionStorage.getItem("email");
 (nameUserSession != null) ? logueado = true : logueado = false
 
-console.log(logueado)
 
-if (logueado) {
-    console.log('esta logueado')
-} else {
-    console.log('No esta logueado')
-}
 
 
 // IMPORTS Product Images================================================================================
