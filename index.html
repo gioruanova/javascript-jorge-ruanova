@@ -27,8 +27,8 @@
 
 
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark" >
-    <div class="container-fluid" >
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#ToTop"><i class="bi bi-lightning-charge"></i>Fast Tech</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +50,13 @@
           <p>Mi cuenta</p>
         </button></a>
       <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#carritoDetail">
-        <p>Ver carrito</p>
-        <i class="bi bi-cart"></i>
+        <div class="cart-view">
+          <p>Ver carrito </p>
+          <i class="bi bi-cart"></i>
+          <div class="number-cart">
+            <p id="number-cart">0</p>
+          </div>
+        </div>
       </button>
       <div class="cart-detail">
         <p class="cart-category">Productos:</p>
@@ -187,7 +192,8 @@
           <div class="current-carrito-title"><i class="bi bi-cart"></i> Este es el detalle de su carrito</div>
           <div class="carritoProducts" id="carritoProducts">
 
-            <div class="message-empty">Su carrito se encuentra vacio. Haga clic en el boton para comenzar a comprar </div>
+            <div class="message-empty">Su carrito se encuentra vacio. Haga clic en el boton para comenzar a comprar
+            </div>
             <!-- ----ARRAY PRODS---- -->
 
             <!-- ----ARRAY PRODS---- -->
@@ -202,7 +208,8 @@
           </div>
         </div>
         <div class="modal-footer" id="empty-buttons">
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" title="Comenzar compra"><i class="bi bi-cart-plus"></i></button>
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" title="Comenzar compra"><i
+              class="bi bi-cart-plus"></i></button>
 
         </div>
       </div>

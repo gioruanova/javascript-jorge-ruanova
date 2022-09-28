@@ -202,6 +202,10 @@ function subTotalPrints() {
     const quantityTotal = document.getElementById('cart-value detail-cant')
     quantityTotal.innerHTML = ""
     quantityTotal.innerHTML = finalQuantity
+
+    const iconQuantity = document.getElementById('number-cart')
+    iconQuantity.innerHTML = ""
+    iconQuantity.innerHTML = finalQuantity
 }
 
 

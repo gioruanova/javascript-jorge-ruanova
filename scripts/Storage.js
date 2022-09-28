@@ -17,6 +17,7 @@ function printStorage() {
     let cardProd = document.createElement("div");
     cardProd.className = "card-compra"
     cardProd.innerHTML = `    
+    
     <div class="header-resumen">
         <div class="left-header">
         <p><b>Compra: </b>${clave}</p>
@@ -27,10 +28,9 @@ function printStorage() {
         </div>
             <button id="${clave}"type="button" class="btn btn-danger" onClick=deleteElementStorage(${clave}) title="Eliminar registro""><i class="bi bi-trash"></i></button>
     </div>
-
-
 `   ;
-    for (const prodcutos of valor) {
+    
+for (const prodcutos of valor) {
       cardProd.innerHTML += `
 <div class="compra-detail-content">
 <p class="product-name">${prodcutos.nombre}</p>
@@ -91,8 +91,8 @@ function createButton() {
   } else {
     buttonSpace.innerHTML = `
 <a href="../index.html">
-<button "type="button" class="btn btn-info" >
-Volver al E-Shop
+<button "type="button" class="btn btn-info" title="Volver a la tienda">
+<i class="bi bi-house-door"></i>
  </button>
 </a>
     `
