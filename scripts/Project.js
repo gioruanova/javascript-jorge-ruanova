@@ -115,7 +115,7 @@ function addToCart() {
     if (logueado) {
         addToCartProceed()
     } else {
-        alert('Debe estar logueado para poder comprar')
+        alertLogin()
     }
 }
 
@@ -128,15 +128,18 @@ function addToCartProceed() {
         (elemento) => elemento.id === productSelected
     );
     if (cantSelected == 0) {
-        alert('Debe seleccionar un nro para agregar al carrito')
+        errorQuantity()
     } else {
         customerPurchaseCart.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
-        alert(`Se ha agregado el proeducto ${productToAdd[0].nombre} al carrito`)
+        // alert(`Se ha agregado el proeducto ${productToAdd[0].nombre} al carrito`)
         totalCartAmount()
         totalCartCant()
         printCartPreview()
         subTotalPrints()
+        productAddedConfirm()
+
+
     }
 }
 
@@ -237,7 +240,7 @@ function productToUpdate() {
     objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
     let productToShow = customerPurchaseCart[objIndex].nombre
     if (parseInt(cantSelected) === customerPurchaseCart[objIndex].cantidad) {
-        alert('Debe cambiar el nro de la cantidad para poder actualizar')
+        errorQuantitySame()
     } else {
         customerPurchaseCart[objIndex].cantidad = parseInt(cantSelected)
         totalCartAmount()
@@ -246,7 +249,8 @@ function productToUpdate() {
         subTotalPrints()
         const delayInMilliseconds = 400
         setTimeout(function () {
-            alert(`Se actualizo la cantidad a ${cantSelected} del producto ${productToShow}`)
+            // alert(`Se actualizo la cantidad a ${cantSelected} del producto ${productToShow}`)
+            successQuantityUpdate()
         }, delayInMilliseconds);
     }
 }
@@ -269,7 +273,7 @@ function productToDelete() {
     subTotalPrints()
     const delayInMilliseconds = 400
     setTimeout(function () {
-        alert(`Su producto ${productName} se ha eliminado`)
+        productDeleteConfirm()
     }, delayInMilliseconds);
 }
 
@@ -295,7 +299,7 @@ function endingPurchase() {
      <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" onClick=emptyAll() title="Finalizar"><i class="bi bi-check2-circle"></i></button>
      </div>
     `
-    alert('Gracias por su compra!')
+    purchaseConfirmed()
     localStorageCartSave()
 
 }
@@ -312,7 +316,7 @@ function emptyAll() {
 // VACIAR CARRITO----------------------------------------------------------------------------
 function emptyAllDelete() {
     emptyAll()
-    alert('Su carrito se ha vaciado')
+    emptyCart()
 }
 
 
@@ -336,4 +340,147 @@ function localStorageCartSave() {
     storageDetail = JSON.stringify(customerPurchaseCart);
     localStorage.setItem(`${localDateToUpdate}`, storageDetail)
 }
+
+
+
+// LOCAL STORAGE SAVE----------------------------------------------------------------------------
+function alertLogin() {
+    Swal.fire({
+        title: 'Usuario no logueado',
+        text: 'Ingrese a Mi Cuenta para registrarse y comenzar a comprar',
+        icon: 'question',
+        timerProgressBar: true,
+        timer: 4000,
+        background: "grey",
+        color: "white",
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+
+    })
+}
+
+
+// MESSAGES----------------------------------------------------------------------------
+
+function errorQuantity() {
+    Swal.fire({
+        title: 'Ingreso incorrecto',
+        text: 'Debe ingresar al menos 1 articulo al carrito',
+        icon: 'question',
+        timerProgressBar: true,
+        timer: 4000,
+        background: "grey",
+        color: "white",
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+
+    })
+}
+
+function errorQuantitySame() {
+    Swal.fire({
+        title: 'Ingreso ambiguo',
+        text: 'No se han registrado cambios. Ingrese un numero mayor o menor al previamente ingresado',
+        icon: 'question',
+        timerProgressBar: true,
+        timer: 4000,
+        background: "grey",
+        color: "white",
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+
+    })
+}
+
+function successQuantityUpdate() {
+    Swal.fire({
+        title: 'Modificacion confirmada',
+        text: 'Se ha modificado la cantidad del producto seleccionado',
+        icon: 'success',
+        timerProgressBar: true,
+        timer: 4000,
+        background: "grey",
+        color: "white",
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+
+    })
+}
+
+
+function productAddedConfirm() {
+    Toastify({
+        text: "Producto agregado correctamente",
+        duration: 2000,
+        gravity: "top",
+        offset: {
+            x: 2,
+            y: 70
+        },
+        style: {
+            background: "green",
+        },
+    }).showToast();
+}
+
+function productDeleteConfirm() {
+    Toastify({
+        text: "El producto se ha eliminado del carrito",
+        duration: 2000,
+        gravity: "top",
+        offset: {
+            x: 2,
+            y: 70
+        },
+        style: {
+            background: "green",
+        },
+    }).showToast();
+}
+
+
+function emptyCart() {
+    Toastify({
+        text: "Su carrito se ha vaciado por completo",
+        duration: 2000,
+        gravity: "top",
+        offset: {
+            x: 2,
+            y: 70
+        },
+        style: {
+            background: "green",
+        },
+    }).showToast();
+}
+
+function purchaseConfirmed() {
+    Swal.fire({
+        title: 'Compra realizada con exito',
+        text: 'Su compra se ha completado. Puede pasar por "Mi Cuenta" para ver el detalle',
+        icon: 'success',
+        timerProgressBar: true,
+        timer: 3500,
+        background: "grey",
+        color: "white",
+        customClass: {
+            confirmButton: 'btn-swall',
+            cancelButton: 'btn-swall '
+        },
+        buttonsStyling: false
+    })
+}
+
 

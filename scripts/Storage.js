@@ -25,14 +25,14 @@ logInStatus()
 
 // =============INJECT HTML VARIABLES=============
 const emptyStore = `
-<h2> <i class="bi bi-person-circle"></i> My Account</h2>
-<p class="salute">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
-<p class="text">A continuacion podra ver el historial de sus operaciones realizadas:</p>
+<h2 class="animate__animated animate__fadeInDown"> <i class="bi bi-person-circle"></i> My Account</h2>
+<p class="salute animate__animated animate__fadeInDown">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
+<p class="text animate__animated animate__fadeInDown">A continuacion podra ver el historial de sus operaciones realizadas:</p>
 `
 const filledStore = `
-<h2> <i class="bi bi-person-circle"></i> My Account</h2>
-<p class="salute">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
-<p class="text">Usted no tiene historial de compras</p>
+<h2 class="animate__animated animate__fadeInDown"> <i class="bi bi-person-circle"></i> My Account</h2>
+<p class="salute animate__animated animate__fadeInDown">Bienvenido <b>${nameUserSession} (${mailUserSession})</b> a su cuenta</p>
+<p class="text animate__animated animate__fadeInDown">Usted no tiene historial de compras</p>
 `
 // =============STORE VALIDATION  LOGIN AND HISTORY =============
 currentHistory < 1 ? true : false
@@ -58,7 +58,7 @@ function printStorage() {
       );
     }
     let cardProd = document.createElement("div");
-    cardProd.className = "card-compra"
+    cardProd.className = "card-compra animate__animated animate__bounceInRight animate__slow"
     cardProd.innerHTML = `    
     
     <div class="header-resumen">
@@ -98,10 +98,9 @@ function printStorage() {
 // =============DELETE LOCALSTORAGE BY ID=============
 function deleteElementStorage(idToDelete) {
   localStorage.removeItem(idToDelete);
-  alert('Su registro se ha borrado')
-  printStorage()
-  createButton()
-  reloadPage()
+  deleteRecord()
+
+
 }
 
 // =============DELETE ALL LOCALSTORAGE=============
@@ -109,10 +108,8 @@ function deleteElementStorage(idToDelete) {
 
 function deleteAll() {
   localStorage.clear();
-  alert('Se ha borrado su historial')
-  printStorage()
-  createButton()
-  reloadPage()
+  deleteAllMessage()
+
 }
 
 // =============UPDATE BUTTON=============
@@ -195,11 +192,101 @@ function validarFormulario() {
 function recordUserSession() {
   sessionStorage.setItem("user", nombre)
   sessionStorage.setItem("email", mail)
-  alert('Logueando....')
+  swalFormLogoIn()
 }
 
 function logOut() {
   sessionStorage.clear()
-  alert('Gracias. Vuevla pronto!')
-  reloadPage()
+  swalFormLogout()
+}
+
+
+
+// MESSAGES----------------------------------------------------------------------------
+function swalFormLogout() {
+  const delayInMilliseconds = 2000
+  Swal.fire({
+    title: 'Deslogueando del sistema',
+    text: 'Gracias. Vuelva pronto',
+    icon: 'info',
+    timerProgressBar: true,
+    timer: 2000,
+    background: "grey",
+    color: "white",
+    customClass: {
+      confirmButton: 'btn-swall',
+      cancelButton: 'btn-swall'
+    },
+    buttonsStyling: false
+  })
+  setTimeout(function () {
+    reloadPage()
+  }, delayInMilliseconds);
+
+}
+
+
+function swalFormLogoIn() {
+  const delayInMilliseconds = 2000
+  Swal.fire({
+    title: 'Validando datos',
+    text: 'Aguarde unos instantes mientras validamos sus credenciales',
+    icon: 'info',
+    timerProgressBar: true,
+    timer: 2000,
+    background: "grey",
+    color: "white",
+    customClass: {
+      confirmButton: 'btn-swall',
+      cancelButton: 'btn-swall '
+    },
+    buttonsStyling: false
+  })
+  setTimeout(function () {
+    reloadPage()
+  }, delayInMilliseconds);
+
+}
+
+
+function deleteRecord() {
+  const delayInMilliseconds = 2000
+  Toastify({
+    text: "Registro eliminado exitosamente",
+    duration: 2000,
+    gravity: "top",
+    offset: {
+      x: 2,
+      y: 70
+    },
+    style: {
+      background: "green",
+    },
+  }).showToast();
+  setTimeout(function () {
+    printStorage()
+    createButton()
+    reloadPage()
+  }, delayInMilliseconds);
+}
+
+function deleteAllMessage() {
+  const delayInMilliseconds = 2000
+  Toastify({
+    text: "Historial eliminado",
+    duration: 2000,
+    gravity: "top",
+    offset: {
+      x: 2,
+      y: 70
+    },
+    style: {
+      background: "green",
+    },
+  }).showToast();
+  setTimeout(function () {
+    printStorage()
+    createButton()
+    reloadPage()
+  }, delayInMilliseconds);
 }

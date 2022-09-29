@@ -89,6 +89,7 @@ nav {
 }
 
 .mainSection {
+  min-height: 75vh;
   padding: 2rem 0;
   text-align: center;
   font-family: "Montserrat", sans-serif;
@@ -383,7 +384,6 @@ nav {
 
 .modal {
   padding: 0;
-  z-index: 99999;
 }
 
 .modal-dialog {
@@ -391,7 +391,6 @@ nav {
   align-items: center;
   padding: 7rem 2rem;
   justify-content: center;
-  z-index: 999999;
   overflow-y: initial !important;
 }
 
@@ -705,7 +704,7 @@ input[type=number]::-webkit-inner-spin-button {
   font-size: 3rem;
 }
 .about p {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .about .sarasa {
   font-size: 1rem;
@@ -716,6 +715,10 @@ input[type=number]::-webkit-inner-spin-button {
   .about .sarasa {
     padding: 0 5rem;
   }
+}
+
+.contact {
+  text-align: center !important;
 }
 
 .text-myaccount {
@@ -942,6 +945,38 @@ input[type=number]::-webkit-inner-spin-button {
 
 .form-main-title i {
   margin-right: 10px;
+}
+
+.btn-swall {
+  display: none !important;
+}
+
+.whatsappIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(25, 173, 25);
+  border-radius: 100%;
+  padding: 1.8rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  transition: 200ms;
+  box-shadow: -4px 5px 10px #535e68;
+}
+.whatsappIcon i {
+  font-size: 2rem;
+  color: white;
+  transition: 200ms;
+}
+.whatsappIcon:hover {
+  cursor: pointer;
+  background-color: greenyellow;
+}
+.whatsappIcon:hover i {
+  color: grey;
 }
 
 /*# sourceMappingURL=styles.css.map */
