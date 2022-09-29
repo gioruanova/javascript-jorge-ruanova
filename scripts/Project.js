@@ -25,18 +25,24 @@ let imgid6 = { src: "./imgs/iphone14.jpeg" };
 let imgid7 = { src: "./imgs/camara.jpg" };
 let imgid8 = { src: "./imgs/monitor.JPG" };
 let imgid9 = { src: "./imgs/teclado.JPG" };
+let imgid10 = { src: "./imgs/ssd.jpg" };
+let imgid11 = { src: "./imgs/rtx.JPG" };
+let imgid12 = { src: "./imgs/gopro.jpg" };
 
 // PRODUCT AVAILABILITY
 let catalogoDisponible = [
-    { id: 1, nombre: "PC Gamer", precio: 1000, cant: 10, stock: true, image: imgid1 },
-    { id: 2, nombre: "Laptop", precio: 5000, cant: 20, stock: true, image: imgid2 },
-    { id: 3, nombre: "Gabinete", precio: 5000, cant: 20, stock: true, image: imgid3 },
-    { id: 4, nombre: "Iphone X", precio: 5000, cant: 20, stock: true, image: imgid4 },
-    { id: 5, nombre: "Samsung X", precio: 5000, cant: 20, stock: true, image: imgid5 },
-    { id: 6, nombre: "Iphone 14", precio: 5000, cant: 0, stock: false, image: imgid6 },
-    { id: 7, nombre: "Camara seguridad", precio: 5000, cant: 0, stock: false, image: imgid7 },
-    { id: 8, nombre: "Monitor Curvo", precio: 5000, cant: 10, stock: true, image: imgid8 },
-    { id: 9, nombre: "Teclado Gamer", precio: 5000, cant: 5, stock: true, image: imgid9 }
+    { id: 1, nombre: "PC Gamer", precio: 148000, cant: 10, stock: true, image: imgid1 },
+    { id: 2, nombre: "Laptop", precio: 89500, cant: 20, stock: true, image: imgid2 },
+    { id: 3, nombre: "Gabinete", precio: 34200, cant: 20, stock: true, image: imgid3 },
+    { id: 4, nombre: "Iphone X", precio: 190000, cant: 20, stock: true, image: imgid4 },
+    { id: 5, nombre: "Samsung X", precio: 120000, cant: 20, stock: true, image: imgid5 },
+    { id: 6, nombre: "Iphone 14", precio: 400000, cant: 0, stock: false, image: imgid6 },
+    { id: 7, nombre: "Camara seguridad", precio: 17800, cant: 0, stock: false, image: imgid7 },
+    { id: 8, nombre: "Monitor Curvo", precio: 130000, cant: 10, stock: true, image: imgid8 },
+    { id: 9, nombre: "Teclado Retroiluminado", precio: 170000, cant: 5, stock: true, image: imgid9 },
+    { id: 10, nombre: "Disco SSD 2TB", precio: 45000, cant: 30, stock: true, image: imgid10 },
+    { id: 11, nombre: "Geforce RTX", precio: 92000, cant: 2, stock: true, image: imgid11 },
+    { id: 12, nombre: "GoPro Hero 10 Black", precio: 143000, cant: 10, stock: true, image: imgid12 },
 ]
 
 
