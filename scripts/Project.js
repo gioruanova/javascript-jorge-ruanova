@@ -47,7 +47,8 @@ let catalogoDisponible = [
 
 
 //PRINT PRODUCTS AVAILABLE=========================================================
-const contenedorProductos = document.getElementById("contenedor-productos");
+function printProducts(){
+    const contenedorProductos = document.getElementById("contenedor-productos");
 function stockConversion(value) {
     if (!value) {
         value = "Sin Stock!"
@@ -114,6 +115,8 @@ for (const producto of catalogoDisponible) {
       </div>`;
     contenedorProductos.append(cardProd);
 }
+}
+printProducts()
 
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
