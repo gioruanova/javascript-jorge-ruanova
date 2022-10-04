@@ -16,6 +16,7 @@ mailUserSession = sessionStorage.getItem("email");
 
 
 // IMPORTS Product Images================================================================================
+
 let imgid1 = { src: "./imgs/pc.jpg" };
 let imgid2 = { src: "./imgs/laptop.JPG" };
 let imgid3 = { src: "./imgs/gabinete.JPG" };
@@ -116,7 +117,7 @@ for (const producto of catalogoDisponible) {
     contenedorProductos.append(cardProd);
 }
 }
-printProducts()
+
 
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
@@ -312,6 +313,10 @@ function endingPurchase() {
     localStorageCartSave()
 
 }
+
+
+// STARTING STORE----------------------------------------------------------------------------
+printProducts()
 
 // RESETEAR TODO----------------------------------------------------------------------------
 function emptyAll() {

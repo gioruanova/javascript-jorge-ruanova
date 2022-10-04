@@ -227,7 +227,8 @@ function swalFormLogout() {
 
 
 function swalFormLogoIn() {
-  const delayInMilliseconds = 2000
+  const delayInMilliseconds = 3000
+
   Swal.fire({
     title: 'Validando datos',
     text: 'Aguarde unos instantes mientras validamos sus credenciales',

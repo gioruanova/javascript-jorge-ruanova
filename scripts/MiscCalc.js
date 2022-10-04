@@ -1,14 +1,14 @@
 // =============COPYRIGHT=============
 const copyFooter = document.getElementById("copyright");
 let dateToShow = ""
-const devYear = 2021;
+const devYear = 2022;
 const currentYear = new Date().getFullYear();
 
 
 if (currentYear === devYear) {
-    dateToShow = (currentYear + ' ' + '| Todos los derechos reservados.');
+    dateToShow = (currentYear + ' ' + '| Al rights reserved.');
 } else {
-    dateToShow = (devYear + ' - ' + currentYear + ' ' + '| Todos los derechos reservados.');
+    dateToShow = (devYear + ' - ' + currentYear + ' ' + '| Al rights reserved.');
 }
 
 copyFooter.innerHTML = dateToShow
