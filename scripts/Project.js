@@ -50,7 +50,7 @@ let catalogoDisponible = [
 //PRINT PRODUCTS AVAILABLE=========================================================
 function printProducts(){
     const contenedorProductos = document.getElementById("contenedor-productos");
-function stockConversion(value) {
+function stockWording(value) {
     if (!value) {
         value = "Sin Stock!"
     } else {
@@ -58,7 +58,7 @@ function stockConversion(value) {
     }
     return value
 }
-function stockConversion2(value) {
+function stockWordingShow(value) {
     if (value == 0) {
         value = " "
     } else {
@@ -66,7 +66,7 @@ function stockConversion2(value) {
     }
     return value
 }
-function stockConversion3(value1, value2, value3) {
+function quantitySelector(value1, value2, value3) {
     if (value1 == 0) {
         value1 = " "
     } else {
@@ -105,10 +105,10 @@ for (const producto of catalogoDisponible) {
           <div class="product-description">
           <i class="card-text-title"><i>${producto.nombre}</i></i>
           <p class="card-text"><b>${producto.precio.toLocaleString('en-US')}</b></p>
-          <p class="card-text">${stockConversion2(producto.cant)}</p>
-          <p class="card-text-stock-mising"><b>${stockConversion(producto.stock)}</b></p>
+          <p class="card-text">${stockWordingShow(producto.cant)}</p>
+          <p class="card-text-stock-mising"><b>${stockWording(producto.stock)}</b></p>
      <div class="wrapper-cant">
-     ${stockConversion3(producto.stock, producto.id, producto.cant)}
+     ${quantitySelector(producto.stock, producto.id, producto.cant)}
      </div>
           <button class=${buttonClass(producto.cant)} id=${producto.id} title="Agregar item"><i class="bi bi-cart-plus"></i></button>
      </div>
