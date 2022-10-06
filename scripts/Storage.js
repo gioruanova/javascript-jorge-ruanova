@@ -145,9 +145,23 @@ function reloadPage() {
 
 // =============STARTING FUNCTIONS=============
 function startExperience() {
-  createButton()
-  printStorage()
-  createLogOffButton()
+  const spinnerLoading = document.getElementById("detail-historic-purchase");
+
+  spinnerLoading.innerHTML = `
+  <div>    
+  <img src="../imgs/spinner.gif"/>
+  </div>    
+  `
+
+
+  setTimeout(function () {
+    spinnerLoading.innerHTML = ""
+    printStorage()
+    createButton()
+
+    createLogOffButton()
+  }, 1500)
+
 }
 // ===============FORM PROCESS===============
 let validationLog;
@@ -251,10 +265,10 @@ function swalFormLogoIn() {
 
 
 function deleteRecord() {
-  const delayInMilliseconds = 2000
+  const delayInMilliseconds = 1500
   Toastify({
     text: "Registro eliminado exitosamente",
-    duration: 2000,
+    duration: 1500,
     gravity: "top",
     offset: {
       x: 2,
