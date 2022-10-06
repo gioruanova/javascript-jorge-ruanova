@@ -152,11 +152,9 @@ async function printProducts() {
         }
     }, 1500);
 
-
-
 }
 
-console.log(catalogoDisponible)
+
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
 function addToCart() {
@@ -197,8 +195,6 @@ function addToCartProceed() {
         subTotalPrints()
         productAddedConfirm()
     }
-
-
 
 }
 
@@ -592,3 +588,17 @@ function purchaseConfirmed() {
         buttonsStyling: false
     })
 }
+
+
+// NOTES
+// //Find index of specific object using findIndex method.    
+// objIndex = myArray.findIndex((obj => obj.id == 1));
+
+// //Log object to Console.
+// console.log("Before update: ", myArray[objIndex])
+
+// //Update object's name property.
+// myArray[objIndex].name = "Laila"
+
+// //Log object to console again.
+// console.log("After update: ", myArray[objIndex])

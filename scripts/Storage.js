@@ -169,18 +169,33 @@ let nombre
 let mail
 
 function printForm() {
-  headerComponent.innerHTML = `
-  <h2 class="form-main-title"> <i class="bi bi-person-circle"></i>Registro</h2>
-<p class="salute">Registrese para comenzar a operar:</p>
-  <form action="" id="formulario">
-    <input type="text" name="fname" placeholder="Su nombre" id="inputNombre"><br>
-    <br>
-  <input type="email" name="lname" placeholder="Su email" id="inputMail"><br><br>
-    <input class="btn btn-primary"type="submit" value="Login" id>
-  </form>
+  const spinnerLoading = document.getElementById("detail-historic-purchase");
+
+  spinnerLoading.innerHTML = `
+  <div>    
+  <img src="../imgs/spinner.gif"/>
+  </div>    
   `
-  inicializarElementos();
-  inicializarEventos();
+
+  setTimeout(function () {
+    spinnerLoading.innerHTML = ""
+
+    headerComponent.innerHTML = `
+    <h2 class="form-main-title"> <i class="bi bi-person-circle"></i>Registro</h2>
+  <p class="salute">Registrese para comenzar a operar:</p>
+    <form action="" id="formulario">
+      <input type="text" name="fname" placeholder="Su nombre" id="inputNombre"><br>
+      <br>
+    <input type="email" name="lname" placeholder="Su email" id="inputMail"><br><br>
+      <input class="btn btn-primary"type="submit" value="Login" id>
+    </form>
+    `
+    inicializarElementos();
+    inicializarEventos();
+  }, 1500)
+
+
+
 }
 
 function inicializarElementos() {
