@@ -156,7 +156,7 @@ async function printProducts() {
 
 }
 
-
+console.log(catalogoDisponible)
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
 function addToCart() {
@@ -169,23 +169,20 @@ function addToCart() {
 
 
 function addToCartProceed() {
-
-
     let productSelected = parseInt(event.srcElement.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
     let productToAdd = catalogoDisponible.filter(
         (elemento) => elemento.id === productSelected
     );
 
+
     let idSelected = ""
     customerPurchaseCart.map((e) => {
         idSelected = e.id
     })
 
-
     if (productSelected == idSelected) {
         alreadyInCart()
-
     }
     else if (cantSelected == 0 || cantSelected > catalogoDisponible[productSelected - 1].cant) {
         errorQuantity()
@@ -193,12 +190,15 @@ function addToCartProceed() {
         customerPurchaseCart.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
 
+
         totalCartAmount()
         totalCartCant()
         printCartPreview()
         subTotalPrints()
         productAddedConfirm()
     }
+
+
 
 }
 
