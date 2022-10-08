@@ -46,17 +46,38 @@ mailUserSession = sessionStorage.getItem("email");
 //     { id: 12, nombre: "GoPro Hero 10 Black", precio: 143000, cant: 10, stock: true, image: imgid12 },
 // ]
 
-let catalogoDisponible = [
-
-]
-
+let catalogoDisponible = []
 
 async function getApi() {
+    // TO DELETE==========
+    // let customerPurchaseCartFinal = [
+    //     {
+    //         id: 1, cantidad: 8
+    //     },
+    //     {
+    //         id: 3, cantidad: 2
+    //     },
+    // ]
     let data = ""
     try {
         const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible");
         data = await response.json()
         catalogoDisponible = [...data]
+        console.log("Connected to datasource")
+        // console.log(catalogoDisponible)
+        // console.log(customerPurchaseCartFinal)
+
+        // // TESTING=====================
+
+        // for (const order of catalogoDisponible) {
+        //     let catalogoDisponible = customerPurchaseCartFinal.find(x => x.id === order.id);
+        //     if (catalogoDisponible) order.cant = (order.cant - catalogoDisponible.cantidad);
+        //     if (order.cant === 0) order.stock = false;
+        // }
+
+
+        // console.log(catalogoDisponible)
+
     } catch (error) {
         console.log(error);
     }
@@ -80,6 +101,8 @@ async function printProducts() {
     function stockWordingShow(value) {
         if (value == 0) {
             value = " "
+        } else if (value == 1) {
+            value = "Ultima disponible!!!"
         } else {
             value = ` Stock disponible: <b>${value}</b>`
         }
@@ -95,11 +118,6 @@ async function printProducts() {
         }
         return value1
     }
-
-
-
-
-
     contenedorProductos.innerHTML = `
 <div>    
 <img src="./imgs/spinner.gif"/>
@@ -166,13 +184,14 @@ function addToCart() {
 }
 
 
+
 function addToCartProceed() {
+
     let productSelected = parseInt(event.srcElement.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
     let productToAdd = catalogoDisponible.filter(
         (elemento) => elemento.id === productSelected
     );
-
 
     let idSelected = ""
     customerPurchaseCart.map((e) => {
@@ -189,11 +208,16 @@ function addToCartProceed() {
         cantSelected = document.getElementById(productSelected).value = 0
 
 
+
+
+
+
         totalCartAmount()
         totalCartCant()
         printCartPreview()
         subTotalPrints()
         productAddedConfirm()
+
     }
 
 }
@@ -288,6 +312,7 @@ function subTotalPrints() {
 
 // CART UPDATE QUANTITY---------------------------------------------------------------------------
 function productToUpdate() {
+
     let productSelectedCart = parseInt(event.srcElement.id)
 
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
@@ -295,6 +320,7 @@ function productToUpdate() {
     objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
     objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
     // let productToShow = customerPurchaseCart[objIndex].nombre
+
 
 
     if (parseInt(cantSelected) === customerPurchaseCart[objIndex].cantidad) {
@@ -306,13 +332,15 @@ function productToUpdate() {
         quantityOverAmount()
     } else {
         customerPurchaseCart[objIndex].cantidad = parseInt(cantSelected)
+
+
         totalCartAmount()
         totalCartCant()
         printCartPreview()
         subTotalPrints()
         const delayInMilliseconds = 400
         setTimeout(function () {
-            // alert(`Se actualizo la cantidad a ${cantSelected} del producto ${productToShow}`)
+
             successQuantityUpdate()
         }, delayInMilliseconds);
     }
@@ -342,7 +370,7 @@ function productToDelete() {
 
 
 // COMPRA FINALIZADA----------------------------------------------------------------------------
-function endingPurchase() {
+async function endingPurchase() {
     let availableProducts = ""
     customerPurchaseCart.forEach((a) => {
         availableProducts += `<div>\n  ${a.nombre} $${a.precio.toLocaleString('en-US')} - (x ${a.cantidad})\n - Total: <b>$${(a.precio * a.cantidad).toLocaleString('en-US')}</b></div>`
@@ -365,11 +393,29 @@ function endingPurchase() {
     purchaseConfirmed()
     localStorageCartSave()
 
+
+    // PUSH TO API======================
+    for (const order of catalogoDisponible) {
+        let catalogoDisponible = customerPurchaseCart.find(x => x.id === order.id);
+        if (catalogoDisponible) order.cant = (order.cant - catalogoDisponible.cantidad);
+        if (order.cant === 0) order.stock = false;
+    }
+    try {
+        const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible", {
+            method: "POST",
+            body: JSON.stringify(catalogoDisponible)
+        });
+        console.log(response)
+    } catch (error) {
+        console.log(error);
+    }
+    printProducts()
 }
 
 
 // STARTING STORE----------------------------------------------------------------------------
 getApi()
+
 printProducts()
 
 // RESETEAR TODO----------------------------------------------------------------------------
@@ -428,6 +474,7 @@ function alertLogin() {
         buttonsStyling: false
 
     })
+
 }
 
 
@@ -590,15 +637,10 @@ function purchaseConfirmed() {
 }
 
 
-// NOTES
-// //Find index of specific object using findIndex method.    
-// objIndex = myArray.findIndex((obj => obj.id == 1));
 
-// //Log object to Console.
-// console.log("Before update: ", myArray[objIndex])
+// // UPDATE STOCK===============
+// stockToUpdate = catalogoDisponible.findIndex((prod => prod.id == 1))
+// console.log(catalogoDisponible[stockToUpdate])
+// catalogoDisponible[stockToUpdate].cant = 1
 
-// //Update object's name property.
-// myArray[objIndex].name = "Laila"
 
-// //Log object to console again.
-// console.log("After update: ", myArray[objIndex])
