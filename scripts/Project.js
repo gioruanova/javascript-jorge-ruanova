@@ -47,44 +47,17 @@ mailUserSession = sessionStorage.getItem("email");
 // ]
 
 let catalogoDisponible = []
-
 async function getApi() {
-    // TO DELETE==========
-    // let customerPurchaseCartFinal = [
-    //     {
-    //         id: 1, cantidad: 8
-    //     },
-    //     {
-    //         id: 3, cantidad: 2
-    //     },
-    // ]
     let data = ""
     try {
         const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible");
         data = await response.json()
         catalogoDisponible = [...data]
         console.log("Connected to datasource")
-        // console.log(catalogoDisponible)
-        // console.log(customerPurchaseCartFinal)
-
-        // // TESTING=====================
-
-        // for (const order of catalogoDisponible) {
-        //     let catalogoDisponible = customerPurchaseCartFinal.find(x => x.id === order.id);
-        //     if (catalogoDisponible) order.cant = (order.cant - catalogoDisponible.cantidad);
-        //     if (order.cant === 0) order.stock = false;
-        // }
-
-
-        // console.log(catalogoDisponible)
-
     } catch (error) {
         console.log(error);
     }
 }
-
-
-
 
 
 //PRINT PRODUCTS AVAILABLE=========================================================
@@ -102,9 +75,9 @@ async function printProducts() {
         if (value == 0) {
             value = " "
         } else if (value == 1) {
-            value = "Ultima disponible!!!"
+            value = `<p class="card-text-red">Ultima disponible!!!</p>`
         } else {
-            value = ` Stock disponible: <b>${value}</b>`
+            value = ` <p class="card-text">Stock disponible: <b>${value}</b></p>`
         }
         return value
     }
@@ -147,7 +120,7 @@ async function printProducts() {
 
 
             cardProd.className = "col-md-4 mt-3 ";
-            cardProd.id = `columna-${producto.id}`;
+            cardProd.id = `columna-${producto.id_product}`;
             cardProd.innerHTML = `
           <div class="card">
               <div class="card-body">
@@ -157,12 +130,12 @@ async function printProducts() {
               <div class="product-description">
               <i class="card-text-title"><i>${producto.nombre}</i></i>
               <p class="card-text"><b>${producto.precio.toLocaleString('en-US')}</b></p>
-              <p class="card-text">${stockWordingShow(producto.cant)}</p>
+              ${stockWordingShow(producto.cant)}
               <p class="card-text-stock-mising"><b>${stockWording(producto.stock)}</b></p>
          <div class="wrapper-cant">
-         ${quantitySelector(producto.stock, producto.id, producto.cant)}
+         ${quantitySelector(producto.stock, producto.id_product, producto.cant)}
          </div>
-              <button class=${buttonClass(producto.cant)} id=${producto.id} title="Agregar item"><i class="bi bi-cart-plus"></i></button>
+              <button class=${buttonClass(producto.cant)} id=${producto.id_product} title="Agregar item"><i class="bi bi-cart-plus"></i></button>
          </div>
               </div>
           </div>`;
@@ -187,15 +160,15 @@ function addToCart() {
 
 function addToCartProceed() {
 
-    let productSelected = parseInt(event.srcElement.id)
+    let productSelected = parseInt(event.target.id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
     let productToAdd = catalogoDisponible.filter(
-        (elemento) => elemento.id === productSelected
+        (elemento) => elemento.id_product === productSelected
     );
 
     let idSelected = ""
     customerPurchaseCart.map((e) => {
-        idSelected = e.id
+        idSelected = e.id_product
     })
 
     if (productSelected == idSelected) {
@@ -204,7 +177,7 @@ function addToCartProceed() {
     else if (cantSelected == 0 || cantSelected > catalogoDisponible[productSelected - 1].cant) {
         errorQuantity()
     } else {
-        customerPurchaseCart.push({ id: productToAdd[0].id, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
+        customerPurchaseCart.push({ id_product: productToAdd[0].id_product, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
         cantSelected = document.getElementById(productSelected).value = 0
 
 
@@ -230,10 +203,10 @@ function printCartPreview() {
         let cardProd = document.createElement("div");
         let totalAmountProd = productToPrint.precio * productToPrint.cantidad
         let productDetail = catalogoDisponible.filter(
-            (elemento) => elemento.id === productToPrint.id
+            (elemento) => elemento.id_product === productToPrint.id_product
         );
         cardProd.className = "cart-product-card";
-        cardProd.id = `columna-${productToPrint.id}`;
+        cardProd.id = `columna-${productToPrint.id_product}`;
         cardProd.innerHTML = `
         <div class="cart-product-details-container">
         <div class="cart-product-details">
@@ -243,7 +216,7 @@ function printCartPreview() {
               <p>${productToPrint.nombre}</p>
               <div class="wrapper-cant">
                 <p>Cantidad:</p>
-                <input type="number" id="cart${productToPrint.id}" name="tentacles" min="0" max="${productDetail[0].cant}"value="${productToPrint.cantidad}">
+                <input type="number" id="cart${productToPrint.id_product}" name="tentacles" min="0" max="${productDetail[0].cant}"value="${productToPrint.cantidad}">
               </div>
             </div>
             <div>
@@ -252,8 +225,8 @@ function printCartPreview() {
           </div>
         </div>
         <div class="button-wrapper">
-          <button type="button" class="btn btn-primary" id="${productToPrint.id}" onClick=productToUpdate() title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
-          <button type="button" class="btn btn-danger" id="${productToPrint.id}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-dash"></i></button>
+          <button type="button" class="btn btn-primary" id="${productToPrint.id_product}" onClick=productToUpdate() title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
+          <button type="button" class="btn btn-danger" id="${productToPrint.id_product}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-dash"></i></button>
         </div>
       </div>`;
         cartContent.append(cardProd);
@@ -313,12 +286,12 @@ function subTotalPrints() {
 // CART UPDATE QUANTITY---------------------------------------------------------------------------
 function productToUpdate() {
 
-    let productSelectedCart = parseInt(event.srcElement.id)
+    let productSelectedCart = parseInt(event.target.id)
 
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
-    objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
-    objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id == productSelectedCart));
+    objIndex = customerPurchaseCart.findIndex((obj => obj.id_product == productSelectedCart));
+    objDetalle = objIndex = customerPurchaseCart.findIndex((obj => obj.id_product == productSelectedCart));
     // let productToShow = customerPurchaseCart[objIndex].nombre
 
 
@@ -348,16 +321,16 @@ function productToUpdate() {
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
 function productToDelete() {
-    let productSelectedCart = parseInt(event.srcElement.id)
+    let productSelectedCart = parseInt(event.target.id)
     let productName = ""
     let elementosEncontrados = customerPurchaseCart.filter(
-        (elemento) => elemento.id === productSelectedCart
+        (elemento) => elemento.id_product === productSelectedCart
     );
     elementosEncontrados.map((e) => {
         productName = e.nombre
 
     })
-    customerPurchaseCart = customerPurchaseCart.filter(data => data.id != productSelectedCart);
+    customerPurchaseCart = customerPurchaseCart.filter(data => data.id_product != productSelectedCart);
     totalCartAmount()
     totalCartCant()
     printCartPreview()
@@ -396,19 +369,21 @@ async function endingPurchase() {
 
     // PUSH TO API======================
     for (const order of catalogoDisponible) {
-        let catalogoDisponible = customerPurchaseCart.find(x => x.id === order.id);
+        let catalogoDisponible = customerPurchaseCart.find(x => x.id_product === order.id_product);
         if (catalogoDisponible) order.cant = (order.cant - catalogoDisponible.cantidad);
         if (order.cant === 0) order.stock = false;
     }
-    try {
-        const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible", {
-            method: "POST",
-            body: JSON.stringify(catalogoDisponible)
-        });
-        console.log(response)
-    } catch (error) {
-        console.log(error);
-    }
+    // try {
+    //     const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible", {
+    //         method: "POST",
+    //         body: JSON.stringify(catalogoDisponible)
+    //     });
+    //     console.log(response)
+    //     console.log(catalogoDisponible)
+    // } catch (error) {
+    //     console.log(error);
+    // }
+    console.log("Aca se actualizaria la api con el stock")
     printProducts()
 }
 
@@ -635,12 +610,5 @@ function purchaseConfirmed() {
         buttonsStyling: false
     })
 }
-
-
-
-// // UPDATE STOCK===============
-// stockToUpdate = catalogoDisponible.findIndex((prod => prod.id == 1))
-// console.log(catalogoDisponible[stockToUpdate])
-// catalogoDisponible[stockToUpdate].cant = 1
 
 

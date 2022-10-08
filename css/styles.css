@@ -986,4 +986,9 @@ input[type=number]::-webkit-inner-spin-button {
   color: grey;
 }
 
+.card-text-red {
+  background-color: red;
+  color: white;
+}
+
 /*# sourceMappingURL=styles.css.map */
