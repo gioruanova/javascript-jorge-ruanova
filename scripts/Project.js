@@ -338,6 +338,10 @@ function productToDelete() {
     const delayInMilliseconds = 400
     setTimeout(function () {
         productDeleteConfirm()
+        totalCartAmount()
+        totalCartCant()
+        printCartPreview()
+        subTotalPrints()
     }, delayInMilliseconds);
 }
 
