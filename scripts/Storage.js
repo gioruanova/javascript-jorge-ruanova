@@ -229,8 +229,6 @@ function logOut() {
   swalFormLogout()
 }
 
-
-
 // MESSAGES----------------------------------------------------------------------------
 function swalFormLogout() {
   const delayInMilliseconds = 2000
