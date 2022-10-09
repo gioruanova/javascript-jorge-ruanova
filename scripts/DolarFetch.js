@@ -1,11 +1,8 @@
 const dolarContainer = document.getElementById("dolar");
-
+const dolarContainer2 = document.getElementById("dolar2");
 
 // =============DOLAR=============
 async function dolarCot() {
-
-
-
     let datosDolar = ""
     try {
         const response = await fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales");
@@ -15,14 +12,12 @@ async function dolarCot() {
     } catch (error) {
         console.log(error);
     }
-
     let detalle = ""
     tipodedolar.slice(0, 7).map(e => {
 
         detalle += `<b>${e.casa.nombre} -</b> <u>Compra:</u> $${e.casa.compra} - <u>Venta:</u> $${e.casa.venta} | `
     })
-
-    dolarContainer.innerHTML = `<marquee behavior="" direction="">${detalle}</marquee>`
+    dolarContainer.innerHTML = `<marquee>${detalle}</marquee>`
+    dolarContainer2.innerHTML = `<marquee>${detalle}</marquee>`
 }
-
 dolarCot()
