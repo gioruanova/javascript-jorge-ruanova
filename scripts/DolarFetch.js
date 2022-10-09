@@ -4,14 +4,6 @@ const dolarContainer = document.getElementById("dolar");
 // =============DOLAR=============
 async function dolarCot() {
 
-    function blurImage(value) {
-        if (!value) {
-            value = `style="filter:blur(5px)"`
-        } else {
-            value = ""
-        }
-        return value
-    }
 
 
     let datosDolar = ""
@@ -19,6 +11,7 @@ async function dolarCot() {
         const response = await fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales");
         datosDolar = await response.json()
         tipodedolar = [...datosDolar]
+        console.log("Connected to DolarSi success")
     } catch (error) {
         console.log(error);
     }

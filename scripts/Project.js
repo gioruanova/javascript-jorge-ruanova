@@ -53,7 +53,7 @@ async function getApi() {
         const response = await fetch("https://633e2670c235b0e5751fa049.mockapi.io/catalogoDisponible");
         data = await response.json()
         catalogoDisponible = [...data]
-        console.log("Connected to datasource")
+        console.log("Connected to Mockapi success")
     } catch (error) {
         console.log(error);
     }
@@ -105,7 +105,7 @@ async function printProducts() {
                 if (!producto.stock) {
                     value = `"btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalError"`
                 } else {
-                    value = `"btn btn-success cartadd" onClick=addToCart()`
+                    value = `"btn btn-success cartadd" onClick=addToCart(this.id)`
                 }
                 return value
             }
@@ -148,9 +148,9 @@ async function printProducts() {
 
 
 // ADD TO CART FUNCTION----------------------------------------------------------------------------
-function addToCart() {
+function addToCart(clicked_id) {
     if (logueado) {
-        addToCartProceed()
+        addToCartProceed(clicked_id)
     } else {
         alertLogin()
     }
@@ -158,9 +158,9 @@ function addToCart() {
 
 
 
-function addToCartProceed() {
+function addToCartProceed(clicked_id) {
 
-    let productSelected = parseInt(event.target.id)
+    let productSelected = parseInt(clicked_id)
     let cantSelected = parseInt(document.getElementById(productSelected).value);
     let productToAdd = catalogoDisponible.filter(
         (elemento) => elemento.id_product === productSelected
@@ -206,7 +206,7 @@ function printCartPreview() {
             (elemento) => elemento.id_product === productToPrint.id_product
         );
         cardProd.className = "cart-product-card";
-        cardProd.id = `columna-${productToPrint.id_product}`;
+        cardProd.id = `card-${productToPrint.id_product}`;
         cardProd.innerHTML = `
         <div class="cart-product-details-container">
         <div class="cart-product-details">
@@ -225,8 +225,8 @@ function printCartPreview() {
           </div>
         </div>
         <div class="button-wrapper">
-          <button type="button" class="btn btn-primary" id="${productToPrint.id_product}" onClick=productToUpdate() title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
-          <button type="button" class="btn btn-danger" id="${productToPrint.id_product}" onClick=productToDelete() title="Remover item"><i class="bi bi-cart-dash"></i></button>
+          <button type="button" class="btn btn-primary" id="${productToPrint.id_product}" onClick=productToUpdate(this.id) title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
+          <button type="button" class="btn btn-danger" id="${productToPrint.id_product}" onClick=productToDelete(this.id) title="Remover item"><i class="bi bi-cart-dash"></i></button>
         </div>
       </div>`;
         cartContent.append(cardProd);
@@ -284,9 +284,9 @@ function subTotalPrints() {
 
 
 // CART UPDATE QUANTITY---------------------------------------------------------------------------
-function productToUpdate() {
+function productToUpdate(clicked_id) {
 
-    let productSelectedCart = parseInt(event.target.id)
+    let productSelectedCart = parseInt(clicked_id)
 
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
@@ -320,8 +320,8 @@ function productToUpdate() {
 }
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
-function productToDelete() {
-    let productSelectedCart = parseInt(event.target.id)
+function productToDelete(clicked_id) {
+    let productSelectedCart = parseInt(clicked_id)
     let productName = ""
     let elementosEncontrados = customerPurchaseCart.filter(
         (elemento) => elemento.id_product === productSelectedCart
@@ -463,7 +463,7 @@ function errorQuantity() {
     Swal.fire({
         title: 'Ingreso incorrecto',
         text: 'Debe ingresar al menos 1 articulo al carrito',
-        icon: 'question',
+        icon: 'warning',
         timerProgressBar: true,
         timer: 4000,
         background: "grey",
