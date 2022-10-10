@@ -261,6 +261,7 @@ nav {
   background-color: rgb(77, 77, 77);
   color: white;
   box-shadow: -6px 9px 13px #242424;
+  border: none;
 }
 
 .messages {
@@ -321,6 +322,7 @@ nav {
     background-color: transparent;
     box-shadow: -4px 5px 10px #616161;
     height: 100%;
+    border: none;
     .card-text-title {
       font-weight: 600;
     }
@@ -416,6 +418,9 @@ input[type="number"]::-webkit-inner-spin-button {
 .tentacles {
   width: 100%;
   margin-left: 0.5rem;
+  border-radius: 4px;
+  border: none;
+
   @media (min-width: 768px) {
     width: 50%;
   }
@@ -431,7 +436,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0.5rem 0;
 }
 
@@ -754,22 +759,22 @@ input[type="number"]::-webkit-inner-spin-button {
       margin: 0;
     }
   }
-}
-
-.card-compra {
-  box-shadow: -4px 5px 10px #616161;
-  color: white;
-  background-color: #616161;
-  border-radius: 5px;
-  margin: 1rem auto;
-  padding: 1rem;
-  transition: $transition;
-  p {
-    margin: 0;
-  }
-  &:hover {
-    transform: scale(1.02);
-    cursor: pointer;
+  .card-compra {
+    box-shadow: -4px 5px 10px #616161;
+    color: white;
+    background-color: #616161;
+    border-radius: 5px;
+    margin: 1rem auto;
+    padding: 1rem;
+    transition: $transition;
+    &:hover {
+      transition: $transition;
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+    p {
+      margin: 0;
+    }
   }
 }
 
@@ -903,7 +908,6 @@ input[type="number"]::-webkit-inner-spin-button {
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
-    box-shadow: -4px 5px 10px #ffffffad;
   }
 }
 

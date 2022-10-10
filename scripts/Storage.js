@@ -58,7 +58,7 @@ function printStorage() {
       );
     }
     let cardProd = document.createElement("div");
-    cardProd.className = "card-compra animate__animated animate__bounceInRight animate__slow"
+    cardProd.className = "card-compra"
     cardProd.innerHTML = `    
     
     <div class="header-resumen">
