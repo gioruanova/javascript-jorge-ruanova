@@ -100,6 +100,7 @@ async function printProducts() {
     setTimeout(function () {
         contenedorProductos.innerHTML = ""
         for (const producto of catalogoDisponible) {
+            
             let cardProd = document.createElement("div");
             function buttonClass(value) {
                 if (!producto.stock) {
