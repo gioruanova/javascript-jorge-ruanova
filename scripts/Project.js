@@ -54,7 +54,7 @@ async function printProducts() {
         } else {
             value1 = ` 
         <p>Cantidad:</p>
-        <input type="number" class="tentacles" id=${value2} name="tentacles" min="1" max="${value3}" value="0">`
+        <input type="number" class="tentacles" id=input${value2} name="tentacles" min="1" max="${value3}" value="0">`
         }
         return value1
     }
@@ -67,7 +67,7 @@ async function printProducts() {
     setTimeout(function () {
         contenedorProductos.innerHTML = ""
         for (const producto of catalogoDisponible) {
-            
+
             let cardProd = document.createElement("div");
             function buttonClass(value) {
                 if (!producto.stock) {
@@ -129,7 +129,8 @@ function addToCart(clicked_id) {
 function addToCartProceed(clicked_id) {
 
     let productSelected = parseInt(clicked_id)
-    let cantSelected = parseInt(document.getElementById(productSelected).value);
+    let cantSelected = parseInt(document.getElementById(`input${productSelected}`).value);
+
     let productToAdd = catalogoDisponible.filter(
         (elemento) => elemento.id_product === productSelected
     );
@@ -146,7 +147,7 @@ function addToCartProceed(clicked_id) {
         errorQuantity()
     } else {
         customerPurchaseCart.push({ id_product: productToAdd[0].id_product, nombre: productToAdd[0].nombre, image: productToAdd[0].image, precio: productToAdd[0].precio, cantidad: cantSelected, totalAmount: productToAdd[0].precio * cantSelected })
-        cantSelected = document.getElementById(productSelected).value = 0
+        cantSelected = document.getElementById(`input${productSelected}`).value = 0
 
 
 
@@ -193,8 +194,8 @@ function printCartPreview() {
           </div>
         </div>
         <div class="button-wrapper">
-          <button type="button" class="btn btn-primary" id="${productToPrint.id_product}" onClick=productToUpdate(this.id) title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
-          <button type="button" class="btn btn-danger" id="${productToPrint.id_product}" onClick=productToDelete(this.id) title="Remover item"><i class="bi bi-cart-dash"></i></button>
+          <button type="button" class="btn btn-primary" id="update-${productToPrint.id_product}" onClick=productToUpdate(this.id) title="Actualizar cantidad items"><i class="bi bi-123"></i></button>
+          <button type="button" class="btn btn-danger" id="delete-${productToPrint.id_product}" onClick=productToDelete(this.id) title="Remover item"><i class="bi bi-cart-dash"></i></button>
         </div>
       </div>`;
         cartContent.append(cardProd);
@@ -254,7 +255,9 @@ function subTotalPrints() {
 // CART UPDATE QUANTITY---------------------------------------------------------------------------
 function productToUpdate(clicked_id) {
 
-    let productSelectedCart = parseInt(clicked_id)
+    let productSelectedCart = `update${clicked_id}`
+    productSelectedCart = parseInt(productSelectedCart.split("-")[1])
+
 
     let cantSelected = document.getElementById(`cart${productSelectedCart}`).value;
     cantSelectedCart = parseInt(cantSelectedCart)
@@ -289,7 +292,8 @@ function productToUpdate(clicked_id) {
 
 // BORRAR DEL CARRITO----------------------------------------------------------------------------
 function productToDelete(clicked_id) {
-    let productSelectedCart = parseInt(clicked_id)
+    let productSelectedCart = `update${clicked_id}`
+    productSelectedCart = parseInt(productSelectedCart.split("-")[1])
     let productName = ""
     let elementosEncontrados = customerPurchaseCart.filter(
         (elemento) => elemento.id_product === productSelectedCart
